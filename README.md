@@ -1,4 +1,5 @@
 # mymanagementsystem
+<<<<<<< HEAD
 第一次写的，工作碰到总结一下
 ## 这个项目使用了最基本的是vue3 + ts + vite + pinia , 样式方面，
 ## 预编译使用sass，taiwindcss,ui暂时引入了element-plus, 之后会加入vex-table 还有一些裁剪等
@@ -81,3 +82,6 @@ see (https://www.yyyi1.cn/detail?id=63e65183982003a0a19bbe23)
 
 ### 引入taiwindcss
 See [这个是百度的,vue3 + vite 配置taiwindcss](https://juejin.cn/post/7173549978580123656).
+=======
+这边是展示的地址应该是那个io的
+>>>>>>> af93ca27723a6794045588477e20a6f59e2ae361
