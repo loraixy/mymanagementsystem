@@ -1,4 +1,8 @@
-
+<script setup lang="ts">
+fetch('https://apis.netstart.cn/zhihudaily/story/9741200').then(req => req.json()).then(res => {
+    console.log('数据测试',res)
+})
+</script>
 
 <template>
     <div class="dashboard">
