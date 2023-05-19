@@ -8,7 +8,7 @@ import SideBarView from '../layout/SideBarView.vue'
 import TagsView from '../layout/TagsView.vue'
 
 const userStore = userSideBarStore()
-// 监听浏览器mq的改变应该是
+// 监听浏览器mq的改变应该是 sss
 userStore.mq.addEventListener('change', userStore.handleResize)
 
 userStore.handleResize()
