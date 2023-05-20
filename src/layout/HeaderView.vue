@@ -5,7 +5,7 @@ const store = userSideBarStore()
 </script>
 
 <template>
-    <div class=" header h-12 w-full border-b border-slate-200">
+    <div class=" flex justify-between header h-12 w-full border-b border-slate-200">
         <div class=" flex items-center min-[480px]:w-[13.131rem] h-full cursor-pointer select-none "
             @click="store.handleIsCollapse">
             <div class=" flex justify-center items-center w-16 h-full bg-gray-100">
@@ -18,6 +18,10 @@ const store = userSideBarStore()
                     Lor 后台管理系统
                 </div>
             </Transition>
+        </div>
+        <div>
+            最顶部的工具栏
+            退出
         </div>
     </div>
 </template>
