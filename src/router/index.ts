@@ -33,6 +33,14 @@ const routes: RouteRecordRaw[] = [
         component: () => import('../views/NavigatorOne/ItemTwo/ItemTwo.vue')
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    meta: {
+      title: '登录'
+    },
+    component: () => import('../views/LoginView.vue')
   }
 ]
 
