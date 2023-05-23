@@ -49,4 +49,17 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('lor')
+  console.log(to, from)
+  console.log(!token, localStorage.getItem('lor'))
+  console.log(token, to.path !== '/login')
+  if (!token && to.path !== '/login') {
+    console.log('接下来会进到这一步')
+    next({ name: 'login' })
+  } else {
+    next()
+  }
+})
+
 export default router

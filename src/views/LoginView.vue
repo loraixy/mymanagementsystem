@@ -4,6 +4,8 @@ import { ref } from 'vue'
 const userName = ref('')
 // 密码
 const password = ref('')
+// localStorage.setItem('lor', 'lor')
+
 </script>
 
 <template>
