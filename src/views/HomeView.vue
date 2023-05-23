@@ -25,7 +25,7 @@ onUnmounted(() => {
         <HeaderView />
       </ElHeader>
       <ElContainer>
-        <ElAside width="auto" style="background-color: #303b75;">
+        <ElAside width="auto" style="background-color: var(--lor-blue);">
           <SideBarView />
         </ElAside>
 

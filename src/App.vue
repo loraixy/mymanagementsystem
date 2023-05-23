@@ -14,7 +14,7 @@ import { RouterView } from 'vue-router'
 
 <style scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -22,6 +22,6 @@ import { RouterView } from 'vue-router'
   margin-top: 0px;
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: absolute; */
 }
 </style>

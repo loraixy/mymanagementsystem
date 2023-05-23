@@ -51,9 +51,9 @@ const { isCollapse } = storeToRefs(store)
 
 <style lang="scss">
 .el-menu {
-    --el-menu-bg-color: #303b75;
-    --el-menu-border-color: #303b75;
+    --el-menu-bg-color: var(--lor-blue);
+    --el-menu-border-color: var(--lor-blue);
     --el-menu-text-color: #fff;
-    --el-menu-hover-bg-color: #4a589e;
+    --el-menu-hover-bg-color: var(--lor-sidebar-hover-bg);
 }
 </style>
