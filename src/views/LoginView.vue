@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
+// 用户名
+const userName = ref('')
+// 密码
+const password = ref('')
+// localStorage.setItem('lor', 'lor')
 
 </script>
 
@@ -7,16 +13,40 @@
         <div>
             <div class=" flex h-screen relative ">
                 <div class=" flex-1 h-full bg-white "></div>
-                <div class=" flex-1 h-full bg-[#1c3b67] ">这里是登录页面</div>
-                <div class=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 shadow-lg bg-white ">
-                    <main class=" flex h-full bg-white text-slate-200 ">
-                        <div class=" flex-1 ">
-                            <ElInput placeholder="请输入账号"></ElInput>
-                            <ElInput placeholder="请输入密码"></ElInput>
-                            <ElInput placeholder="请输入内容"></ElInput>
+                <div class=" flex-1 h-full bg-[--lor-blue] ">这里是登录页面</div>
+                <div
+                    class=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 shadow-lg  rounded-sm bg-white ">
+                    <main class=" flex h-full  rounded-sm bg-white text-slate-200 ">
+                        <div class=" flex-1 flex flex-col justify-center items-center bg-gray-100 ">
+                            <el-row class="mb-4">
+                                <el-button>Default</el-button>
+                                <el-button type="primary">Primary</el-button>
+                                <el-button type="success">Success</el-button>
+                                <el-button type="info">Info</el-button>
+                                <el-button type="warning">Warning</el-button>
+                                <el-button type="danger">Danger</el-button>
+                            </el-row>
+                            <div class=" w-[18.75rem] h-[18.75rem] p-7 rounded-sm text-gray-400 bg-white  ">
+                                <ElRow>
+                                    <div class=" w-full text-center ">User Login</div>
+                                </ElRow>
+                                <ElRow>
+                                    <span>User Name</span>
+                                    <ElInput class=" mb-4 " v-model="userName" placeholder="请输入账号"></ElInput>
+                                </ElRow>
+                                <ElRow>
+                                    <span>User password</span>
+                                    <ElInput class=" mb-4 " v-model="password" placeholder="请输入密码"></ElInput>
+                                </ElRow>
+                                <ElRow>
+                                    <span>User Name</span>
+                                    <ElInput class=" mb-4 " placeholder="请输入内容"></ElInput>
+                                </ElRow>
 
+                                <ElButton type="danger">login</ElButton>
+                            </div>
                         </div>
-                        <div class=" flex-1 h-full bg-[#1c3b67]">
+                        <div class=" flex-1 h-full bg-[--lor-blue]">
                             登录模块
                             <span class=" drop-shadow ">UserLogin</span>
                             欢迎登录， Lor 后台管理系统
