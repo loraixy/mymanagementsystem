@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import { watch } from 'vue'
 // import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
+
+const route = useRoute()
+console.log(route)
+
+watch(() => route.fullPath, (val) => {
+  console.log(val)
+})
 
 
 </script>
