@@ -6,15 +6,15 @@
 }
 
 /* semantic color variables for this project */
-:root {
+/* :root {
  
-}
+} */
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     
   }
-}
+} */
 
 *,
 *::before,

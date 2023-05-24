@@ -1,10 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-// 用户名
-const userName = ref('')
-// 密码
-const password = ref('')
-// localStorage.setItem('lor', 'lor')
+import LoginModel from './components/LoginModel.vue'
 
 </script>
 
@@ -26,24 +21,8 @@ const password = ref('')
                                 <el-button type="warning">Warning</el-button>
                                 <el-button type="danger">Danger</el-button>
                             </el-row>
-                            <div class=" w-[18.75rem] h-[18.75rem] p-7 rounded-sm text-gray-400 bg-white  ">
-                                <ElRow>
-                                    <div class=" w-full text-center ">User Login</div>
-                                </ElRow>
-                                <ElRow>
-                                    <span>User Name</span>
-                                    <ElInput class=" mb-4 " v-model="userName" placeholder="请输入账号"></ElInput>
-                                </ElRow>
-                                <ElRow>
-                                    <span>User password</span>
-                                    <ElInput class=" mb-4 " v-model="password" placeholder="请输入密码"></ElInput>
-                                </ElRow>
-                                <ElRow>
-                                    <span>User Name</span>
-                                    <ElInput class=" mb-4 " placeholder="请输入内容"></ElInput>
-                                </ElRow>
-
-                                <ElButton type="danger">login</ElButton>
+                            <div class=" w-[18.75rem] p-7 rounded-sm text-gray-400 bg-white ">
+                                <LoginModel></LoginModel>
                             </div>
                         </div>
                         <div class=" flex-1 h-full bg-[--lor-blue]">
