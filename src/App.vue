@@ -21,7 +21,7 @@ watch(() => route.fullPath, (val) => {
 </template>
 
 <style scoped>
-#app {
+/* #app { */
   /* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -31,5 +31,5 @@ watch(() => route.fullPath, (val) => {
   height: 100%;
   width: 100%;
   position: absolute; */
-}
+/* } */
 </style>
