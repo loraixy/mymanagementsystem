@@ -74,7 +74,10 @@ router.beforeEach((to, from, next) => {
      *  但是浏览器的地址却没有发生变化
      *  主要还是回到/ 会出现
      */
-    window.location.hash = "/login"
+
+    setTimeout(() => {
+      window.location.hash = "/login"
+    }, 0);
     console.log(window.location)
 
   } else if (token && to.path === '/login') {
