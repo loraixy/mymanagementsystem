@@ -41,7 +41,7 @@ const routes: RouteRecordRaw[] = [
       title: '登录'
     },
     component: () => import('../views/LoginView.vue')
-  }
+  },
 ]
 
 const router = createRouter({
@@ -51,12 +51,17 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('lor')
-  console.log(to, from)
-  console.log(!token, localStorage.getItem('lor'))
   console.log(token, to.path !== '/login')
   if (!token && to.path !== '/login') {
-    console.log('接下来会进到这一步')
-    next({ name: 'login' })
+
+    console.log(to, from)
+
+    // next({ name: 'login' })
+    window.location.hash = "/login"
+    console.log(window.location)
+
+  } else if (token && to.path === '/login') {
+    next('/dashboard')
   } else {
     next()
   }
