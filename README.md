@@ -78,8 +78,18 @@ export default defineConfig({
 
 ### 引入elementplus图标
 see (https://www.yyyi1.cn/detail?id=63e65183982003a0a19bbe23)
+使用elementplus遇到好多小问题， 比如那个类型引入的，打包就报了下面这个错误,
+后面在这解决的 see(https://github.com/element-plus/element-plus/issues/11818)
+```sh
+✓ built in 17.51s
+src/views/LoginView/components/LoginModel.vue:5:15 - error TS2614: Module '"element-plus"' has no exported member 'FormInstance'. Did you mean to use 'import FormInstance from "element-plus"' instead?
+
+5 import type { FormInstance } from 'element-plus'
+
+```
 
 
 ### 引入taiwindcss
 See [这个是百度的,vue3 + vite 配置taiwindcss](https://juejin.cn/post/7173549978580123656).
+
 
