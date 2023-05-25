@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { nextTick } from 'vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -62,9 +63,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   // 浏览器那个标题
   document.title = `${to.meta.title}`
+  // 明天解决一下相同路径问题has模式的，得搞一个历史路由模式
   console.log(to, from)
   const token = localStorage.getItem('lor')
-  console.log(token, to.path !== '/login')
+  // console.log(token, to.path !== '/login')
   if (!token && to.path !== '/login') {
 
     console.log(to, from)
@@ -74,15 +76,17 @@ router.beforeEach((to, from, next) => {
      *  但是浏览器的地址却没有发生变化
      *  主要还是回到/ 会出现
      */
-
-    setTimeout(() => {
+    // router.push('/login')
+    nextTick(() => {
+      console.log('你什么时候执行')
       window.location.hash = "/login"
-    }, 0);
+    })
     console.log(window.location)
 
   } else if (token && to.path === '/login') {
     next('/dashboard')
   } else {
+    console.log('你执行了吗')
     next()
   }
 })

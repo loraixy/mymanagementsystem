@@ -32,6 +32,7 @@ const handleCommand = (command: string) => {
                 </div>
             </Transition>
         </div>
+        <!-- 这里是展示那些标签，切换小标签的 -->
         <div class=" flex-1 ">
 
         </div>
