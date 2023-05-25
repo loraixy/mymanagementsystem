@@ -5,6 +5,7 @@ import ItemOneHeader from './components/ItemOneHeader.vue';
 const title = ref('')
 const images = ref('')
 const age = ref(12)
+
 fetch('https://apis.netstart.cn/zhihudaily/story/9741200').then(req => req.json()).then(res => {
     console.log('数据测试', res.story.image)
     title.value = res.story.title
