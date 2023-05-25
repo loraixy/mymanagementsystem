@@ -1,24 +1,47 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-import type { FormInstance } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 
 const router = useRouter()
 
-// 用户名
-const userName = ref('')
-// 密码
-const password = ref()
-
 // 表单elemnt
 const loginForm = ref<FormInstance | undefined>()
+// 表单的数据
+const ruleForm = reactive({
+    userName: '',
+    password: ''
+})
+// 表单验证规则
+const rule = reactive<FormRules>({
+    userName: [
+        {
+            required: true,
+            message: '请输入姓名',
+            trigger: 'blur'
+        },
+        {
+            min: 3,
+            max: 5,
+            message: '请输入3-5个名称',
+            trigger: 'blur'
+        }
+    ],
+    password: [
+        {
+            required: true,
+            message: '密码不能为空',
+            trigger: 'blur'
+        }
+    ]
+})
 
 // 点击登录
-const clickLogin = (loginForm: FormInstance | undefined): void => {
-    loginForm?.validate((vali: boolean) => {
-        console.log('是不是没执行')
+const clickLogin = async (loginForm: FormInstance | undefined): Promise<void> => {
+    await loginForm?.validate((vali: boolean) => {
         if (vali) {
+            // 一堆的判断是否可以登录请求数据等
             localStorage.setItem('lor', 'lor')
             router.push('/')
         } else {
@@ -32,14 +55,14 @@ const clickLogin = (loginForm: FormInstance | undefined): void => {
     <ElRow>
         <div class=" w-full text-center ">User Login</div>
     </ElRow>
-    <ElForm ref="loginForm">
-        <ElFormItem>
+    <ElForm ref="loginForm" :model="ruleForm" :rules="rule">
+        <ElFormItem prop="userName">
             <span>User Name</span>
-            <ElInput v-model="userName" placeholder="请输入账号"></ElInput>
+            <ElInput v-model="ruleForm.userName" placeholder="请输入账号"></ElInput>
         </ElFormItem>
-        <ElFormItem>
+        <ElFormItem prop="password">
             <span>User password</span>
-            <ElInput v-model="password" placeholder="请输入密码"></ElInput>
+            <ElInput v-model="ruleForm.password" placeholder="请输入密码"></ElInput>
         </ElFormItem>
         <ElFormItem>
             <span>User Name</span>
