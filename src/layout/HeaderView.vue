@@ -1,11 +1,24 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
 import { userSideBarStore } from '../stores/sidebar'
 
+const router = useRouter()
+
 const store = userSideBarStore()
+
+// 退出登录
+const handleCommand = (command: string) => {
+
+    if (command === 'loginOut') {
+        localStorage.removeItem('lor')
+        router.push('/login')
+    }
+}
 </script>
 
 <template>
-    <div class=" flex justify-between header h-12 w-full border-b border-slate-200">
+    <div class=" flex header h-12 w-full border-b border-slate-200">
         <div class=" flex items-center min-[480px]:w-[13.131rem] h-full cursor-pointer select-none "
             @click="store.handleIsCollapse">
             <div class=" flex justify-center items-center w-16 h-full bg-gray-100">
@@ -19,9 +32,32 @@ const store = userSideBarStore()
                 </div>
             </Transition>
         </div>
-        <div>
+        <div class=" flex-1 ">
+
+        </div>
+        <div class=" flex justify-center items-center pr-5 ">
+            <ElBadge :value="3" :max="99" class=" mt-2 mr-2 ">
+                <ElIcon :size="20">
+                    <IEpMessage />
+                </ElIcon>
+            </ElBadge>
+
             最顶部的工具栏
-            退出
+            <ElDropdown :hide-on-click="false" trigger="click" @command="handleCommand">
+                <span>{{ '用户' }}</span>
+                <template #dropdown>
+                    <ElDropdownMenu>
+                        <ElDropdownItem command="loginOut">
+                            <div>
+                                退出
+                            </div>
+                        </ElDropdownItem>
+                        <ElDropdownItem>
+                            修改密码
+                        </ElDropdownItem>
+                    </ElDropdownMenu>
+                </template>
+            </ElDropdown>
         </div>
     </div>
 </template>

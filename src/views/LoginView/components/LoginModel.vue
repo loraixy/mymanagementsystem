@@ -36,6 +36,7 @@ const rule = reactive<FormRules>({
         }
     ]
 })
+// http://gxhis.net/api
 
 // 点击登录
 const clickLogin = async (loginForm: FormInstance | undefined): Promise<void> => {
