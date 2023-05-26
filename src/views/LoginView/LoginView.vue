@@ -22,6 +22,7 @@ import LoginModel from './components/LoginModel.vue'
                                 <el-button type="danger">Danger</el-button>
                             </el-row>
                             <div class=" w-[18.75rem] p-7 rounded-sm text-gray-400 bg-white ">
+                                <!-- 登录表单组件 -->
                                 <LoginModel></LoginModel>
                             </div>
                         </div>
