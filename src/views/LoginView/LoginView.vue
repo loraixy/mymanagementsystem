@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 
-const show = ref(false)
+const showLoginModel = ref(false)
 
 onMounted(() => {
-    show.value = true
+    showLoginModel.value = true
 })
 
 import LoginModel from './components/LoginModel.vue'
@@ -18,8 +18,7 @@ import LoginModel from './components/LoginModel.vue'
                 <div class=" flex-1 h-full bg-white "></div>
                 <div class=" flex-1 h-full bg-[--lor-blue] ">这里是登录页面</div>
                 <Transition name="card">
-                    <div class=" login-card " v-show="show">
-
+                    <div class=" login-card " v-show="showLoginModel">
                         <main class=" flex h-full  rounded-sm bg-white text-slate-200 ">
                             <div class=" flex-1 flex flex-col justify-center items-center bg-gray-100 ">
                                 <el-row class="mb-4">
