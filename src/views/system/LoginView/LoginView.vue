@@ -60,7 +60,7 @@ import LoginModel from './components/LoginModel.vue'
 }
 
 .card-enter-active {
-    transition: all 1.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all .8s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .card-enter-to {
