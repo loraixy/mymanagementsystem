@@ -42,6 +42,16 @@ const routes: RouteRecordRaw[] = [
           isSave: false
         },
         component: () => import('../views/system/NavigatorOne/ItemTwo/ItemTwo.vue')
+      },
+      {
+        path: '/test',
+        name: 'hhhh',
+        meta: {
+          title: 'hhhh',
+          permiss: '1',
+          isSave: false
+        },
+        component: () => import('../views/system/Navigatorhhhhh/HhhhView.vue')
       }
     ]
   },

@@ -19,7 +19,7 @@ const ageFn = (val: number): void => {
 </script>
 
 <template>
-    <div class="dashboard">
+    <div class="item-one overflow-y-auto ">
         <ItemOneHeader :age="age" @age-fn="ageFn"></ItemOneHeader>
         <h1>This is an dashboard page tIEMone</h1>
         <h2>{{ title }}</h2>

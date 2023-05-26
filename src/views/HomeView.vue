@@ -41,6 +41,10 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss">
+.el-main {
+  height: calc(100vh - 3rem);
+}
+
 .content-main {
   display: flex;
 }
