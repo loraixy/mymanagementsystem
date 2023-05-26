@@ -8,7 +8,7 @@ const router = useRouter()
 
 // 表单elemnt
 const loginForm = ref<FormInstance | undefined>()
-// 表单的数据
+// 表单绑定的数据
 const ruleForm = reactive({
     userName: '',
     password: ''
