@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/system/HomeView.vue'
 import { nextTick } from 'vue'
 
 const routes: RouteRecordRaw[] = [
@@ -21,7 +21,7 @@ const routes: RouteRecordRaw[] = [
           permiss: '1',
           isSave: false
         },
-        component: () => import('../views/DashBoard.vue')
+        component: () => import('../views/system/DashBoard.vue')
       },
       {
         path: '/item-one',
@@ -31,7 +31,7 @@ const routes: RouteRecordRaw[] = [
           permiss: '1',
           isSave: false
         },
-        component: () => import('../views/system/NavigatorOne/ItemOne/ItemOne.vue')
+        component: () => import('../views/pages/NavigatorOne/ItemOne/ItemOne.vue')
       },
       {
         path: '/item-two',
@@ -41,7 +41,17 @@ const routes: RouteRecordRaw[] = [
           permiss: '1',
           isSave: false
         },
-        component: () => import('../views/system/NavigatorOne/ItemTwo/ItemTwo.vue')
+        component: () => import('../views/pages/NavigatorOne/ItemTwo/ItemTwo.vue')
+      },
+      {
+        path: '/test',
+        name: 'hhhh',
+        meta: {
+          title: 'hhhh',
+          permiss: '1',
+          isSave: false
+        },
+        component: () => import('../views/pages/Navigatorhhhhh/HhhhView.vue')
       }
     ]
   },
@@ -51,7 +61,7 @@ const routes: RouteRecordRaw[] = [
     meta: {
       title: '登录'
     },
-    component: () => import('../views/LoginView/LoginView.vue')
+    component: () => import('../views/system/LoginView/LoginView.vue')
   },
 ]
 

@@ -18,13 +18,21 @@ const { isCollapse } = storeToRefs(store)
                 <ElIcon :size="20" color="#409EFC">
                     <IEpLocation />
                 </ElIcon>
-
+                <span class=" overflow-hidden whitespace-nowrap text-ellipsis ">Navigator hhhhhhhhhhhhhhh</span>
+            </template>
+            <ElMenuItem index="test">hhhhhhhhhhhhhhh</ElMenuItem>
+        </ElSubMenu>
+        <ElSubMenu index="2">
+            <template #title>
+                <ElIcon :size="20" color="#409EFC">
+                    <IEpLocation />
+                </ElIcon>
                 <span>Navigator One</span>
             </template>
             <ElMenuItem index="item-one">item one</ElMenuItem>
             <ElMenuItem index="item-two">item two</ElMenuItem>
         </ElSubMenu>
-        <ElSubMenu index="2">
+        <ElSubMenu index="3">
             <template #title>
                 <ElIcon :size="20" color="#409EFC">
                     <IEpCirclePlusFilled />
@@ -32,19 +40,9 @@ const { isCollapse } = storeToRefs(store)
                 <span>Navigator One two</span>
             </template>
             <ElMenuItemGroup p title="Group One">
-                <ElMenuItem index="index">item one</ElMenuItem>
-                <ElMenuItem index="home">item two</ElMenuItem>
+                <ElMenuItem disabled index="index">item one</ElMenuItem>
+                <ElMenuItem disabled index="home">item two</ElMenuItem>
             </ElMenuItemGroup>
-        </ElSubMenu>
-        <ElSubMenu index="3">
-            <template #title>
-                <ElIcon :size="20" color="#409EFC">
-                    <IEpLocation />
-                </ElIcon>
-                <span class=" overflow-hidden whitespace-nowrap text-ellipsis ">Navigator hhhhhhhhhhhhhhh</span>
-            </template>
-            <ElMenuItem index="index">item one</ElMenuItem>
-            <ElMenuItem index="home">item two</ElMenuItem>
         </ElSubMenu>
     </ElMenu>
 </template>

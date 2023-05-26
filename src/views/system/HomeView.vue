@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onUnmounted } from 'vue'
 import { RouterView } from 'vue-router';
-import { userSideBarStore } from '../stores/sidebar'
+import { userSideBarStore } from '../../stores/sidebar'
 
-import HeaderView from '../layout/HeaderView.vue'
-import SideBarView from '../layout/SideBarView.vue'
-import TagsView from '../layout/TagsView.vue'
+import HeaderView from '../../layout/HeaderView.vue'
+import SideBarView from '../../layout/SideBarView.vue'
+import TagsView from '../../layout/TagsView.vue'
 
 const userStore = userSideBarStore()
 // 监听浏览器mq的改变应该是
@@ -41,6 +41,10 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss">
+.el-main {
+  height: calc(100vh - 3rem);
+}
+
 .content-main {
   display: flex;
 }
