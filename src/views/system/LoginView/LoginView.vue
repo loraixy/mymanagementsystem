@@ -50,6 +50,7 @@ import LoginModel from './components/LoginModel.vue'
 
 <style>
 .login-card {
+    /* 这个爆黄在.vscode 加上settings.json文件配置可以解决 */
     @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 shadow-lg rounded-sm bg-white
 }
 
