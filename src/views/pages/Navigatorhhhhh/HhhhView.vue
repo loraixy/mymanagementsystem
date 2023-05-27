@@ -3,7 +3,7 @@ import { ref } from 'vue'
 // 医院报表数据
 const hospitalList = ref([])
 
-fetch('/医院报表.json').then(req => req.json()).then(res => {
+fetch('/hospitalList.json').then(req => req.json()).then(res => {
     hospitalList.value = res.data[0]
     console.log("hospitalList =>", hospitalList.value)
 })
