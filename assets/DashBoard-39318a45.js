@@ -1,1 +1,0 @@
-import{_ as e,c as s,o as a,a as o}from"./index-06ccfbe4.js";const _={},t={class:"dashboard"},c=o("h1",null,"This is an dashboard page 我的桌面",-1),n=[c];function r(d,h){return a(),s("div",t,n)}const l=e(_,[["render",r]]);export{l as default};
