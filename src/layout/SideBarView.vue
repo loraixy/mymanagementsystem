@@ -20,7 +20,7 @@ const { isCollapse } = storeToRefs(store)
                 </ElIcon>
                 <span class=" overflow-hidden whitespace-nowrap text-ellipsis ">Navigator hhhhhhhhhhhhhhh</span>
             </template>
-            <ElMenuItem index="test">hhhhhhhhhhhhhhh</ElMenuItem>
+            <ElMenuItem index="test">虚拟列表</ElMenuItem>
         </ElSubMenu>
         <ElSubMenu index="2">
             <template #title>
