@@ -16,7 +16,7 @@ const startIndex = ref(0)
 const endIndex = ref(0)
 // 列表展示
 const listShow = ref(true)
-//  表格的总高
+// 表格的总高
 const elTableHeight = computed<number>(() => {
     return hospitalList.value.length * itemSize.value
 })

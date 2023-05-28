@@ -36,13 +36,17 @@ const handleCommand = (command: string) => {
         <div class=" flex-1 ">
 
         </div>
-        <div class=" flex justify-center items-center pr-5 ">
+        <div class=" flex items-center pr-5 ">
             <ElBadge :value="3" :max="99" class=" mt-2 mr-2 ">
                 <ElIcon :size="20">
                     <IEpMessage />
                 </ElIcon>
             </ElBadge>
-
+            <a target="_blank" href="https://loraixy.github.io">
+                <ElIcon :size="20" class=" mr-2 " @click="">
+                    <IEpHouse />
+                </ElIcon>
+            </a>
             最顶部的工具栏
             <ElDropdown :hide-on-click="false" trigger="click" @command="handleCommand">
                 <span>{{ '用户' }}</span>

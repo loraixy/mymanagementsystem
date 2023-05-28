@@ -30,6 +30,7 @@ declare module '@vue/runtime-core' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     IEpCirclePlusFilled: typeof import('~icons/ep/circle-plus-filled')['default']
+    IEpHouse: typeof import('~icons/ep/house')['default']
     IEpLocation: typeof import('~icons/ep/location')['default']
     IEpMenu: typeof import('~icons/ep/menu')['default']
     IEpMessage: typeof import('~icons/ep/message')['default']

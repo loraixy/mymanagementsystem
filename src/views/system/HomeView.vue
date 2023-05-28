@@ -32,7 +32,9 @@ onUnmounted(() => {
         <ElMain>
           <TagsView />
           <div>
-            <RouterView></RouterView>
+            <Transition name="move">
+              <RouterView></RouterView>
+            </Transition>
           </div>
         </ElMain>
       </ElContainer>
@@ -53,9 +55,14 @@ onUnmounted(() => {
   padding: 0;
 }
 
+.move-enter-to,
+.move-leave-from {
+  opacity: 1;
+}
+
 .move-enter-active,
 .move-leave-active {
-  transition: opacity .1s ease;
+  transition: opacity .3s ease;
 }
 
 .move-enter-from,
