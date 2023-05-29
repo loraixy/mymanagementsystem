@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+// 医院报表数据类型接口
+import type { IHospitalList } from '../../../typings/hhhh'
+
 // 医院报表数据
-const hospitalList = ref([])
+const hospitalList = ref<IHospitalList[]>([])
 // table最大的div
 const elTable = ref<HTMLElement | undefined>()
 // 列表每一项的高度
@@ -65,7 +68,7 @@ onMounted(() => {
         <h2>未作处理的表格， 是明显可以感受到卡顿的，开始渲染时间长且侧边栏也会卡顿 , 当前列表项数量：{{ hospitalList.length }}</h2>
         <!-- 解决数据渲染7000 条 最近工作需要旧的的项目是vue2的这边也自己写一下 -->
         <div v-if="listShow">
-            <div>当前为已经使用</div>
+            <div>当前为已经使用 (简易的虚拟列表)</div>
             <div ref="elTable" class=" relative " :style="`height:${screenHeight}px; overflow: auto;`"
                 @scroll="handleTableScroll">
                 <div :style="`height: ${elTableHeight}px; `"></div>
