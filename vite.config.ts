@@ -1,4 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
+// 引入path处理文件路径
+import path from 'path'
 
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -13,11 +15,16 @@ console.log("process.env =>", process.env.NODE_ENV)
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  console.log('当前参数 =>', process.cwd())
+ 
   // 这个位置书写的不对，应该使用path那个模块拼接才对因为那个不同电脑不一样的
-  const path = process.cwd() + '/env'
-  const env = loadEnv(mode, path);
-  const { VITE_APP_TITLE, VITE_API_BASE_URL, VITE_NODE_ENV } = env;
+  // const envPath = process.cwd() + 'env'
+  // 新的
+  const envPath = path.resolve(process.cwd(), 'env')
+  // 加载env
+  console.log('当前参数 =>', envPath)
+  const env = loadEnv(mode, envPath)
+
+  const { VITE_APP_TITLE, VITE_API_BASE_URL, VITE_NODE_ENV } = env
 
   console.log(`当前环境: ${VITE_APP_TITLE}`, VITE_API_BASE_URL, VITE_APP_TITLE, VITE_NODE_ENV)
 
@@ -40,6 +47,14 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
     },
+    server: {
+      proxy: {
+        'api': {
+          target: VITE_API_BASE_URL,
+        }
+      }
+    },
+    // 指定.env所在的文件位置
     envDir: 'env'
   }
 })
