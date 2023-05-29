@@ -13,7 +13,9 @@ console.log("process.env =>", process.env.NODE_ENV)
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd());
+  console.log('当前参数 =>', process.cwd())
+  const path = process.cwd() + '/env'
+  const env = loadEnv(mode, path);
   const { VITE_APP_TITLE, VITE_API_BASE_URL, VITE_NODE_ENV } = env;
 
   console.log(`当前环境: ${VITE_APP_TITLE}`, VITE_API_BASE_URL, VITE_APP_TITLE, VITE_NODE_ENV)
@@ -36,6 +38,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
-    }
+    },
+    envDir: 'env'
   }
 })
