@@ -13,3 +13,6 @@ app.use(createPinia())
 app.use(router)
 
 app.mount('#app')
+
+console.log(' VITE_MD: ', import.meta.env.NODE_ENV);
+

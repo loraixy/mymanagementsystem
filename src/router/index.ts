@@ -44,10 +44,10 @@ const routes: RouteRecordRaw[] = [
         component: () => import('../views/pages/NavigatorOne/ItemTwo/ItemTwo.vue')
       },
       {
-        path: 'test',
-        name: 'hhhh',
+        path: 'virtual-list',
+        name: 'VirtualList',
         meta: {
-          title: 'hhhh',
+          title: '虚拟列表',
           permiss: '1',
           isSave: false
         },
