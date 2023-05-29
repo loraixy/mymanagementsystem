@@ -14,7 +14,7 @@ const routes: RouteRecordRaw[] = [
     component: HomeView,
     children: [
       {
-        path: '/dashboard',
+        path: 'dashboard',
         name: 'dashboard',
         meta: {
           title: '系统首页',
@@ -24,7 +24,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('../views/system/DashBoard.vue')
       },
       {
-        path: '/item-one',
+        path: 'item-one',
         name: 'itemOne',
         meta: {
           title: 'itemone',
@@ -34,7 +34,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('../views/pages/NavigatorOne/ItemOne/ItemOne.vue')
       },
       {
-        path: '/item-two',
+        path: 'item-two',
         name: 'itemTwo',
         meta: {
           title: 'itemTwo',
@@ -44,7 +44,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('../views/pages/NavigatorOne/ItemTwo/ItemTwo.vue')
       },
       {
-        path: '/test',
+        path: 'test',
         name: 'hhhh',
         meta: {
           title: 'hhhh',

@@ -32,9 +32,16 @@ onUnmounted(() => {
         <ElMain>
           <TagsView />
           <div>
+            <!-- 上面这个写法没有bug，下面的有很奇怪 -->
+            <!-- <Transition name="move">
+              <RouterView></RouterView>
+            </Transition> -->
+            <!-- https://blog.csdn.net/weixin_57677300/article/details/128385003 这里是解决方法 -->
             <RouterView v-slot="{ Component }">
-              <Transition name="move">
-                <Component :is="Component" />
+              <Transition name="move" mode="out-in" appear>
+                <KeepAlive>
+                  <Component :is="Component" />
+                </KeepAlive>
               </Transition>
             </RouterView>
           </div>
