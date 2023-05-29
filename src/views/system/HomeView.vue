@@ -32,9 +32,11 @@ onUnmounted(() => {
         <ElMain>
           <TagsView />
           <div>
-            <Transition name="move">
-              <RouterView></RouterView>
-            </Transition>
+            <RouterView v-slot="{ Component }">
+              <Transition name="move">
+                <Component :is="Component" />
+              </Transition>
+            </RouterView>
           </div>
         </ElMain>
       </ElContainer>

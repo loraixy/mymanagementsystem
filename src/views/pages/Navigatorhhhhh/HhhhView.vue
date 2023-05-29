@@ -31,6 +31,7 @@ const visibleCount = computed<number>(() => {
 const visibleData = computed(() => {
     return hospitalList.value.slice(startIndex.value, endIndex.value)
 })
+// 元素的偏移
 const elTableTransform = computed<string>(() => {
     return `translate3d(0,${startOffset.value}px,0)`
 })
@@ -52,7 +53,7 @@ const handleTableScroll = (event: UIEvent): void => {
     endIndex.value = visibleCount.value + startIndex.value
     // 这是表格的偏移量
     startOffset.value = scrollTop - (scrollTop % itemSize.value)
-    console.log('startIndex, endIndex =>', startIndex.value, endIndex.value)
+    // console.log('startIndex, endIndex =>', startIndex.value, endIndex.value)
 }
 
 onMounted(() => {

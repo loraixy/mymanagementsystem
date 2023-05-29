@@ -16,13 +16,17 @@ watch(() => route.fullPath, (val) => {
 <template>
   <!-- :locale="zhCn" -->
   <!-- <ElConfigProvider> -->
-  <RouterView />
+  <RouterView v-slot="{ Component }">
+    <Transition name="move">
+      <Component :is="Component" />
+    </Transition>
+  </RouterView>
   <!-- </ElConfigProvider> -->
 </template>
 
 <style scoped>
 /* #app { */
-  /* font-family: Avenir, Helvetica, Arial, sans-serif;
+/* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -32,4 +36,19 @@ watch(() => route.fullPath, (val) => {
   width: 100%;
   position: absolute; */
 /* } */
+
+.move-enter-to,
+.move-leave-from {
+  opacity: 1;
+}
+
+.move-enter-active,
+.move-leave-active {
+  transition: opacity .2s ease;
+}
+
+.move-enter-from,
+.move-leave-to {
+  opacity: 0;
+}
 </style>
