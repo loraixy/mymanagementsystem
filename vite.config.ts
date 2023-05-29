@@ -14,6 +14,7 @@ console.log("process.env =>", process.env.NODE_ENV)
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   console.log('当前参数 =>', process.cwd())
+  // 这个位置书写的不对，应该使用path那个模块拼接才对因为那个不同电脑不一样的
   const path = process.cwd() + '/env'
   const env = loadEnv(mode, path);
   const { VITE_APP_TITLE, VITE_API_BASE_URL, VITE_NODE_ENV } = env;
