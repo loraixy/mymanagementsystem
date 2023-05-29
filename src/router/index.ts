@@ -72,7 +72,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // 浏览器那个标题
-  document.title = `${to.meta.title}`
+  document.title = `${to.meta.title} | ${import.meta.env.VITE_APP_TITLE}`
   // 明天解决一下相同路径问题has模式的，得搞一个历史路由模式
   console.log(to, from)
   const token = localStorage.getItem('lor')

@@ -8,15 +8,15 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import IconResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
-
+// 这是node的那个写的，我在node项目用这个，在浏览器环境vite的这个去修改import.meta.env.mode的
 console.log("process.env =>", process.env.NODE_ENV)
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
-  const { VITE_APP_ENV, VITE_API_BASE_URL, VITE_NODE_ENV } = env;
+  const { VITE_APP_TITLE, VITE_API_BASE_URL, VITE_NODE_ENV } = env;
 
-  console.log(VITE_API_BASE_URL, VITE_APP_ENV, VITE_NODE_ENV)
+  console.log(`当前环境: ${VITE_APP_TITLE}`, VITE_API_BASE_URL, VITE_APP_TITLE, VITE_NODE_ENV)
 
   return {
     base: './',

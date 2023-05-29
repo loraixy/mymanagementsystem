@@ -14,5 +14,6 @@ app.use(router)
 
 app.mount('#app')
 
-console.log(' VITE_MD: ', import.meta.env.NODE_ENV);
+console.log(' NODE_ENV: ', import.meta.env.VITE_NODE_ENV);
+console.log('VITE_APP_TITLE', import.meta.env.VITE_APP_TITLE)
 

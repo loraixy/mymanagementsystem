@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "vite",
     "pro": "vite --mode production",
+    "test": "vite --mode test",
+    "yege": "vite --mode yege",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
