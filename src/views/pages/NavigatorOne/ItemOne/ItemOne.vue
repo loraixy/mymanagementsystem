@@ -6,7 +6,15 @@ const title = ref('')
 const images = ref('')
 const age = ref(12)
 
-fetch('https://apis.netstart.cn/zhihudaily/story/9741200').then(req => req.json()).then(res => {
+let baseUrl: string = ''
+
+if(import.meta.env.VITE_NODE_ENV === 'production') {
+    baseUrl = import.meta.env.VITE_API_BASE_URL
+} else {
+    baseUrl = '/api'
+}
+
+fetch( baseUrl + '/zhihudaily/story/9741200').then(req => req.json()).then(res => {
     console.log('数据测试', res.story.image)
     title.value = res.story.title
     images.value = res.story.image
