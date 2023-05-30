@@ -40,7 +40,7 @@ const { isCollapse } = storeToRefs(store)
                 <span>Navigator One two</span>
             </template>
             <ElMenuItemGroup p title="Group One">
-                <ElMenuItem disabled index="index">item one</ElMenuItem>
+                <ElMenuItem index="group-one">Group one</ElMenuItem>
                 <ElMenuItem disabled index="home">item two</ElMenuItem>
             </ElMenuItemGroup>
         </ElSubMenu>

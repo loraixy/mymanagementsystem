@@ -1,0 +1,65 @@
+<script setup lang="ts">
+
+// import { ref } from 'vue'
+let treeData: any[] = []
+
+fetch('treeData.json').then(req => req.json()).then(res => {
+    treeData = res.data[0]
+
+    console.log('treeData =>', treeData)
+    // 调用函数
+
+    // 调用函数，添加新字段
+    addGourpNumToSqdMxList(treeData, 'groupNum');
+    console.log(treeData);
+
+})
+
+// // 递归函数
+function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
+    for (let i = 0; i < treeData.length; i++) {
+        for (const key in treeData[i]) {
+            const current = treeData[i][key];
+            if (Array.isArray(current)) {
+                // 递归调用
+                addGourpNumToSqdMxList(current, gourpNumField);
+            } else if (treeData[i].SqdMxList) {
+                // 添加新字段
+                treeData[i].SqdMxList = treeData[i].SqdMxList.map((item: any, index: any) => ({
+                    ...item,
+                    [gourpNumField]: index + 1
+                }))
+            }
+        }
+    }
+}
+
+// 性能优化版
+
+
+
+// // 示例数据
+// const treeData = [
+//     {
+//         id: 1, name: 'Node 1', children: [
+//             {
+//                 id: 2, name: 'Node 2', children: [
+//                     {
+//                         id: 3, name: 'Node 3', children: [
+//                             { id: 4, name: 'Node 4', children: [], SqdMxList: '1' }
+//                         ]
+//                     }
+//                 ]
+//             }
+//         ]
+//     }
+// ];
+
+
+
+
+</script>
+
+<template>
+    <div>树形数据修改</div>
+</template>

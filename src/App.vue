@@ -17,7 +17,7 @@ watch(() => route.fullPath, (val) => {
   <!-- :locale="zhCn" -->
   <!-- <ElConfigProvider> -->
   <RouterView v-slot="{ Component }">
-    <Transition name="move">
+    <Transition name="move" mode="out-in" appear>
       <Component :is="Component" />
     </Transition>
   </RouterView>

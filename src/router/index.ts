@@ -49,9 +49,21 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: '虚拟列表',
           permiss: '1',
+          // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
           isSave: false
         },
         component: () => import('../views/pages/Navigatorhhhhh/HhhhView.vue')
+      },
+      {
+        path: 'group-one',
+        name: 'groupOne',
+        meta: {
+          title: '树形数据',
+          permiss: '1',
+          // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
+          isSave: false
+        },
+        component: () => import('../views/pages/NavigatorOnetwo/GroupOne.vue')
       }
     ]
   },
@@ -76,7 +88,7 @@ router.beforeEach((to, from, next) => {
   // 明天解决一下相同路径问题has模式的，得搞一个历史路由模式
   console.log(to, from)
   const token = localStorage.getItem('lor')
-  // console.log(token, to.path !== '/login')
+  // console.log(token, to.path !== '/login' )
   if (!token && to.path !== '/login') {
 
     console.log(to, from)

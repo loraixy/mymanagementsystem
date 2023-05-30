@@ -20,7 +20,8 @@ import LoginModel from './components/LoginModel.vue'
                 <Transition name="card">
                     <div class=" login-card " v-show="showLoginModel">
                         <main class=" flex h-full  rounded-sm bg-white text-slate-200 ">
-                            <div class=" flex flex-col justify-center items-center w-1/2 bg-gray-100 max-md:w-full transition-all  ">
+                            <div
+                                class=" flex flex-col justify-center items-center w-1/2 bg-gray-100 max-md:w-full transition-all  ">
                                 <!-- <el-row class="mb-4">
                                     <el-button>Default</el-button>
                                     <el-button type="primary">Primary</el-button>

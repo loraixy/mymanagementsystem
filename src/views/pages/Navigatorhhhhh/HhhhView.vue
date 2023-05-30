@@ -5,6 +5,7 @@ import type { IHospitalList } from '../../../typings/hhhh'
 
 // 医院报表数据
 const hospitalList = ref<IHospitalList[]>([])
+
 // table最大的div
 const elTable = ref<HTMLElement | undefined>()
 // 列表每一项的高度
