@@ -12,6 +12,7 @@ export const userTagsStore = defineStore('tags', () => {
     // 创建那些标签列表
     const tagsList = ref<ITagsList[]>([])
 
+
     // 当关闭标签时回到上一个编辑的标签
     const historyTagsList = ref<ITagsList[]>([])
 
