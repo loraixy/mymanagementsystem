@@ -40,38 +40,6 @@ export const userTagsStore = defineStore('tags', () => {
 
     }
 
-    /**
-     * 树形结构寻找
-     * function updateItemInTreeData(treeData, itemId, newItem) {
-  for (let node of treeData) {
-    if (node.id === itemId) {
-      // 此处假设我们想要修改 id 为 itemId 的节点下最里面数组的第0项
-      const deepestArray = getDeepestArray(node);
-      if (deepestArray) {
-        // 修改最后一个元素
-        deepestArray[0] = newItem;
-      } else {
-        console.error('找不到要修改的数组');
-      }
-      return;
-    } else if (node.children) {
-      updateItemInTreeData(node.children, itemId, newItem);
-    }
-  }
-}
-
-// 辅助函数，用于找到最深处的数组并返回它
-function getDeepestArray(node) {
-  let current = node;
-  while (current.children && current.children.length) {
-    current = current.children[current.children.length - 1];
-  }
-  return Array.isArray(current) ? current : null;
-}
-
-
-     */
-
     return {
         tagsList,
         historyTagsList,

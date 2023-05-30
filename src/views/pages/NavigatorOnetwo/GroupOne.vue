@@ -1,21 +1,20 @@
 <script setup lang="ts">
-
-// import { ref } from 'vue'
-let treeData: any[] = []
+import { ref } from 'vue'
+const treeData = ref<any[]>([])
 
 fetch('treeData.json').then(req => req.json()).then(res => {
-    treeData = res.data[0]
+    treeData.value = res.data[0]
 
-    console.log('treeData =>', treeData)
+    console.log('treeData =>', treeData.value)
     // 调用函数
 
     // 调用函数，添加新字段
-    addGourpNumToSqdMxList(treeData, 'groupNum');
-    console.log(treeData);
+    addGourpNumToSqdMxList(treeData.value, 'groupNum');
+    console.log(treeData.value);
 
 })
 
-// // 递归函数
+// 递归函数
 function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
     for (let i = 0; i < treeData.length; i++) {
         for (const key in treeData[i]) {
@@ -36,8 +35,6 @@ function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
 
 // 性能优化版
 
-
-
 // // 示例数据
 // const treeData = [
 //     {
@@ -54,10 +51,6 @@ function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
 //         ]
 //     }
 // ];
-
-
-
-
 </script>
 
 <template>
