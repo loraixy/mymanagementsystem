@@ -27,7 +27,8 @@ router.afterEach((to, from, failure) => {
         title,
         name,
         isSave,
-        path
+        path,
+        closeBoldIconShow: false
     })
 })
 

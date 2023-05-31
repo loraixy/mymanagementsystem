@@ -14,6 +14,10 @@ fetch('treeData.json').then(req => req.json()).then(res => {
 
 })
 
+// fetch('https://jxakyysmis.top/api/Myfromwork/login?username=admin&password=Admin_123&JigID=').then(req => req.json()).then(res => {
+//     console.log(res)
+// })
+
 // 递归函数
 function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
     for (let i = 0; i < treeData.length; i++) {

@@ -7,7 +7,8 @@ export const useTagsStore = defineStore('tags', () => {
         name: string
         title: string
         isSave: boolean
-        path: string
+        path: string,
+        closeBoldIconShow: boolean
     }
     // 创建那些标签列表
     const tagsList = ref<ITagsList[]>([])
