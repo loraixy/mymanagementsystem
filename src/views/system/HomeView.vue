@@ -5,12 +5,11 @@ import { useSideBarStore } from '../../stores/sidebar'
 
 import HeaderView from '../../layout/HeaderView.vue'
 import SideBarView from '../../layout/SideBarView.vue'
-import TagsView from '../../layout/TagsView.vue'
 
 const userStore = useSideBarStore()
 // 监听浏览器mq的改变应该是
 userStore.mq.addEventListener('change', userStore.handleResize)
-
+// 改变大小
 userStore.handleResize()
 
 onUnmounted(() => {
@@ -30,7 +29,6 @@ onUnmounted(() => {
         </ElAside>
 
         <ElMain>
-          <TagsView />
           <div>
             <!-- 上面这个写法没有bug，下面的有很奇怪 -->
             <!-- <Transition name="move">

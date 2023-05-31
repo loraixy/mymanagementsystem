@@ -3,6 +3,8 @@ import { useRouter } from 'vue-router'
 
 import { useSideBarStore } from '../stores/sidebar'
 
+import TagsView from './TagsView.vue'
+
 const router = useRouter()
 
 const store = useSideBarStore()
@@ -34,7 +36,7 @@ const handleCommand = (command: string) => {
         </div>
         <!-- 这里是展示那些标签，切换小标签的 -->
         <div class=" flex-1 ">
-
+            <TagsView />
         </div>
         <div class=" flex items-center pr-5 ">
             <ElBadge :value="3" :max="99" class=" mt-2 mr-2 ">

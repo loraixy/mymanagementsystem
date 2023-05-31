@@ -17,7 +17,16 @@ export const useTagsStore = defineStore('tags', () => {
 
     // 获取并且添加标签列表
     const getTagsListItem = (tagsListItem: ITagsList): void => {
+        Array.from(new Set([]))
         tagsList.value = [...tagsList.value, tagsListItem]
+        // 数据做去重处理
+        tagsList.value = tagsList.value.reduce((acc: ITagsList[], curr) => {
+            const index = acc.findIndex((item) => item.path === curr.path)
+            if (index < 0) {
+                acc.push(curr)
+            }
+            return acc
+        }, [])
     }
 
     // 关闭当前标签
