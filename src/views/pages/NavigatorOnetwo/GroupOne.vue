@@ -53,11 +53,12 @@ function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
 <template>
     <div>树形数据修改
         <div>
+            <p>这里是js经典的精度问题</p>
             <ElInput type="text" v-model="num1" />
             <ElInput type="text" v-model="num2" />
             <p>使用先将小数转换整数后再转换回来(只能解决固定返回的小数){{ resultNum }}</p>
             <p>{{ multiplicationNun }}</p>
-            <p>这里是js经典的精度问题</p>
+            
         </div>
     </div>
 </template>
