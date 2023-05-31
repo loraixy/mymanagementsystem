@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const userSideBarStore = defineStore('sidebar', () => {
+export const useSideBarStore = defineStore('sidebar', () => {
     const isCollapse = ref(false)
 
     // 获取媒体查询值

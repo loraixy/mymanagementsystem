@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { userSideBarStore } from '../stores/sidebar'
+import { useSideBarStore } from '../stores/sidebar'
 import { storeToRefs } from 'pinia'
 
 
-const store = userSideBarStore()
+const store = useSideBarStore()
 
 const { isCollapse } = storeToRefs(store)
 
@@ -40,7 +40,7 @@ const { isCollapse } = storeToRefs(store)
                 <span>Navigator One two</span>
             </template>
             <ElMenuItemGroup p title="Group One">
-                <ElMenuItem index="group-one">Group one</ElMenuItem>
+                <ElMenuItem index="group-one">树形数据</ElMenuItem>
                 <ElMenuItem disabled index="home">item two</ElMenuItem>
             </ElMenuItemGroup>
         </ElSubMenu>

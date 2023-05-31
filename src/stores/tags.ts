@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const userTagsStore = defineStore('tags', () => {
+export const useTagsStore = defineStore('tags', () => {
     // 标签类型
     interface ITagsList {
         name: string
@@ -11,7 +11,6 @@ export const userTagsStore = defineStore('tags', () => {
     }
     // 创建那些标签列表
     const tagsList = ref<ITagsList[]>([])
-
 
     // 当关闭标签时回到上一个编辑的标签
     const historyTagsList = ref<ITagsList[]>([])

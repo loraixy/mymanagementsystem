@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useTagsStore } from '../stores/tags'
+
+const sidebarStore = useTagsStore()
+
+console.log(sidebarStore)
 
 </script>
 

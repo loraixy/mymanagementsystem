@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 
-import { userSideBarStore } from '../stores/sidebar'
+import { useSideBarStore } from '../stores/sidebar'
 
 const router = useRouter()
 
-const store = userSideBarStore()
+const store = useSideBarStore()
 
 // 退出登录
 const handleCommand = (command: string) => {

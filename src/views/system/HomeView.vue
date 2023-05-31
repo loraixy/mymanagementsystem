@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { onUnmounted } from 'vue'
 import { RouterView } from 'vue-router';
-import { userSideBarStore } from '../../stores/sidebar'
+import { useSideBarStore } from '../../stores/sidebar'
 
 import HeaderView from '../../layout/HeaderView.vue'
 import SideBarView from '../../layout/SideBarView.vue'
 import TagsView from '../../layout/TagsView.vue'
 
-const userStore = userSideBarStore()
+const userStore = useSideBarStore()
 // 监听浏览器mq的改变应该是
 userStore.mq.addEventListener('change', userStore.handleResize)
 
