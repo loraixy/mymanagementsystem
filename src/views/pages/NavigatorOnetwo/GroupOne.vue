@@ -2,8 +2,6 @@
 import { ref } from 'vue'
 const treeData = ref<any[]>([])
 
-console.log(0.5 - 0.2, 0.3)
-
 fetch('treeData.json').then(req => req.json()).then(res => {
     treeData.value = res.data[0]
 
@@ -15,10 +13,6 @@ fetch('treeData.json').then(req => req.json()).then(res => {
     console.log(treeData.value);
 
 })
-
-// fetch('https://jxakyysmis.top/api/Myfromwork/login?username=admin&password=Admin_123&JigID=').then(req => req.json()).then(res => {
-//     console.log(res)
-// })
 
 // 递归函数
 function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
@@ -41,24 +35,13 @@ function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
 
 // 性能优化版
 
-// // 示例数据
-// const treeData = [
-//     {
-//         id: 1, name: 'Node 1', children: [
-//             {
-//                 id: 2, name: 'Node 2', children: [
-//                     {
-//                         id: 3, name: 'Node 3', children: [
-//                             { id: 4, name: 'Node 4', children: [], SqdMxList: '1' }
-//                         ]
-//                     }
-//                 ]
-//             }
-//         ]
-//     }
-// ];
 </script>
 
 <template>
-    <div>树形数据修改</div>
+    <div>树形数据修改
+        <div>
+            <p>这里是js经典的精度问题</p>
+
+        </div>
+    </div>
 </template>
