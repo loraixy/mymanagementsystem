@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 const treeData = ref<any[]>([])
 
+console.log(0.5 - 0.2, 0.3)
+
 fetch('treeData.json').then(req => req.json()).then(res => {
     treeData.value = res.data[0]
 

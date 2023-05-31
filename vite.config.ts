@@ -15,13 +15,14 @@ console.log("process.env =>", process.env.NODE_ENV)
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
- 
+
   // 这个位置书写的不对，应该使用path那个模块拼接才对因为那个不同电脑不一样的
   // const envPath = process.cwd() + 'env'
   // 新的
   const envPath = path.resolve(process.cwd(), 'env')
   // 加载env
   console.log('当前参数 =>', envPath)
+  // loadEnv用于加载env文件的东西
   const env = loadEnv(mode, envPath)
 
   const { VITE_APP_TITLE, VITE_API_BASE_URL, VITE_NODE_ENV } = env
@@ -56,7 +57,7 @@ export default defineConfig(({ mode }) => {
           // ws: true, // 是否代理websockets
           // rewrite target目标地址 + '/abc'，如果接口是这样的，那么不用重写
           rewrite: (path) => path.replace(/^\/api/, '') // 路径
-      }
+        }
       }
     },
     // 指定.env所在的文件位置
