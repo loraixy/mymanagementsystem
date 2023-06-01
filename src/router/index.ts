@@ -17,6 +17,7 @@ const routes: RouteRecordRaw[] = [
         path: 'dashboard',
         name: 'dashboard',
         meta: {
+          savePage: true,
           title: '系统首页',
           permiss: '1',
           isSave: false
@@ -27,6 +28,7 @@ const routes: RouteRecordRaw[] = [
         path: 'item-one',
         name: 'itemOne',
         meta: {
+          savePage: true,
           title: 'itemone',
           permiss: '1',
           isSave: false
@@ -37,6 +39,7 @@ const routes: RouteRecordRaw[] = [
         path: 'item-two',
         name: 'itemTwo',
         meta: {
+          savePage: true,
           title: 'itemTwo',
           permiss: '1',
           isSave: false
@@ -47,6 +50,7 @@ const routes: RouteRecordRaw[] = [
         path: 'virtual-list',
         name: 'VirtualList',
         meta: {
+          savePage: true,
           title: '虚拟列表',
           permiss: '1',
           // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
@@ -58,6 +62,7 @@ const routes: RouteRecordRaw[] = [
         path: 'group-one',
         name: 'groupOne',
         meta: {
+          savePage: true,
           title: '树形数据',
           permiss: '1',
           // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
@@ -71,6 +76,7 @@ const routes: RouteRecordRaw[] = [
     path: '/login',
     name: 'login',
     meta: {
+      savePage: false,
       title: '登录'
     },
     component: () => import('../views/system/LoginView/LoginView.vue')
@@ -78,6 +84,7 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
+  linkActiveClass: 'route-link-active',
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes
 })

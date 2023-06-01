@@ -17,12 +17,15 @@ app.mount('#app')
 
 const tagsStore = useTagsStore()
 
-router.afterEach((to, from, failure) => {
-    console.log('main.ts to, from failure =>', to.meta.title, to.meta.permiss, to.fullPath, from, failure)
+router.afterEach((to) => {
+    // console.log('main.ts to, from failure =>', to.meta.title, to.meta.permiss, to.fullPath, from, failure)
+    if (!to.meta.savePage) return
     const title = to.meta.title as string
     const name = to.name as string
     const isSave = to.meta.isSave as boolean
     const path = to.path as string
+    tagsStore.currentPath = path
+
     tagsStore.getTagsListItem({
         title,
         name,

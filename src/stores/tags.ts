@@ -16,9 +16,17 @@ export const useTagsStore = defineStore('tags', () => {
     // 当关闭标签时回到上一个编辑的标签
     const historyTagsList = ref<ITagsList[]>([])
 
+    // 当前路径
+    const currentPath = ref('')
+    // 缓存的标签数据
+    const local_tags_list = JSON.parse(localStorage.getItem('local_tags_list') as string)
+    if (localStorage.getItem('local_tags_list') && Array.isArray(local_tags_list)) {
+        tagsList.value = local_tags_list
+    }
+
     // 获取并且添加标签列表
     const getTagsListItem = (tagsListItem: ITagsList): void => {
-        Array.from(new Set([]))
+
         tagsList.value = [...tagsList.value, tagsListItem]
         // 数据做去重处理
         tagsList.value = tagsList.value.reduce((acc: ITagsList[], curr) => {
@@ -28,6 +36,8 @@ export const useTagsStore = defineStore('tags', () => {
             }
             return acc
         }, [])
+        // 缓存数据到本地
+        localStorageTagsList(tagsList.value)
     }
 
     // 关闭当前标签
@@ -49,14 +59,20 @@ export const useTagsStore = defineStore('tags', () => {
     const closeOtherTagsListItem = (): void => {
 
     }
+    // 标签页本地缓存
+    const localStorageTagsList = (list: ITagsList[]): void => {
+        localStorage.setItem('local_tags_list', JSON.stringify(list))
+    }
 
     return {
         tagsList,
         historyTagsList,
+        currentPath,
         getTagsListItem,
         colseCurrentTagsListItem,
         deleteTagesListItem,
         clearTagesList,
-        closeOtherTagsListItem
+        closeOtherTagsListItem,
+        localStorageTagsList
     }
 })

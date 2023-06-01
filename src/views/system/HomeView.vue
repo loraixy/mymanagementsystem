@@ -7,10 +7,12 @@ import HeaderView from '../../layout/HeaderView.vue'
 import SideBarView from '../../layout/SideBarView.vue'
 
 const userStore = useSideBarStore()
+
 // 监听浏览器mq的改变应该是
 userStore.mq.addEventListener('change', userStore.handleResize)
 // 改变大小
 userStore.handleResize()
+
 
 onUnmounted(() => {
   userStore.mq.removeEventListener('change', userStore.handleResize)
@@ -69,7 +71,7 @@ onUnmounted(() => {
 
 .move-enter-active,
 .move-leave-active {
-  transition: opacity .3s ease;
+  transition: opacity .2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .move-enter-from,

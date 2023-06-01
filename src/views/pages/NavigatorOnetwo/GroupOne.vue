@@ -33,7 +33,7 @@ const countDecimalPlaces = (num: number | string): number => {
     // 这边直接在.的位置到末尾的字符串，然后返回该字符串长度就能得到该小数有几位了
     return num.toString().substring(decimaIndex + 1, num.toString().length).length
 }
-
+// 获取数据
 fetch('treeData.json').then(req => req.json()).then(res => {
     treeData.value = res.data[0]
 
