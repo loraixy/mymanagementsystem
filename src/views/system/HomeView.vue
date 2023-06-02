@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { onUnmounted } from 'vue'
-import { RouterView } from 'vue-router'
+import { RouterView, onBeforeRouteUpdate } from 'vue-router'
 import { useSideBarStore } from '../../stores/sidebar'
 import { useTagsStore } from '../../stores/tags'
 
 import HeaderView from '../../layout/HeaderView.vue'
 import SideBarView from '../../layout/SideBarView.vue'
+
 
 const userStore = useSideBarStore()
 
@@ -19,6 +20,26 @@ userStore.handleResize()
 
 onUnmounted(() => {
   userStore.mq.removeEventListener('change', userStore.handleResize)
+})
+
+onBeforeRouteUpdate((to, form) => {
+  console.log('from failure =>', to.meta.title, to.meta.permiss, to.fullPath)
+  if (!to.meta.savePage || !form.meta.savePage) return
+  const title = to.meta.title as string
+  const name = to.name as string
+  const isSave = to.meta.isSave as boolean
+  const path = to.path as string
+  tagsStore.currentPath = path
+
+  form.fullPath === '/dashboard' && tagsStore.getTagsListItem({ title: form.meta.title, name: form.meta.title, path: form.fullPath, closeBoldIconShow: false })
+
+  tagsStore.getTagsListItem({
+    title,
+    name,
+    isSave,
+    path,
+    closeBoldIconShow: false
+  })
 })
 </script>
 

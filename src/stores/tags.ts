@@ -6,7 +6,7 @@ export const useTagsStore = defineStore('tags', () => {
     interface ITagsList {
         name: string
         title: string
-        isSave: boolean
+        isSave?: boolean
         path: string,
         closeBoldIconShow: boolean
     }
@@ -54,7 +54,6 @@ export const useTagsStore = defineStore('tags', () => {
     const deleteTagesListItem = (tagsListItem: ITagsList): void => {
         console.log(tagsListItem)
         tagsList.value = tagsList.value.filter(item => item.path !== tagsListItem.path)
-
     }
     // 清空标签
     const clearTagesList = (): void => {
