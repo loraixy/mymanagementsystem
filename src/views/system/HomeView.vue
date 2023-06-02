@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { onUnmounted } from 'vue'
-import { RouterView } from 'vue-router';
+import { RouterView } from 'vue-router'
 import { useSideBarStore } from '../../stores/sidebar'
+import { useTagsStore } from '../../stores/tags'
 
 import HeaderView from '../../layout/HeaderView.vue'
 import SideBarView from '../../layout/SideBarView.vue'
 
 const userStore = useSideBarStore()
+
+const tagsStore = useTagsStore()
 
 // 监听浏览器mq的改变应该是
 userStore.mq.addEventListener('change', userStore.handleResize)
@@ -39,7 +42,7 @@ onUnmounted(() => {
             <!-- https://blog.csdn.net/weixin_57677300/article/details/128385003 这里是解决方法 -->
             <RouterView v-slot="{ Component }">
               <Transition name="move" mode="out-in" appear>
-                <KeepAlive>
+                <KeepAlive :include="tagsStore.tagsPath">
                   <Component :is="Component" />
                 </KeepAlive>
               </Transition>

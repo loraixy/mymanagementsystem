@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export const useTagsStore = defineStore('tags', () => {
     // 标签类型
@@ -16,6 +16,10 @@ export const useTagsStore = defineStore('tags', () => {
     // 当关闭标签时回到上一个编辑的标签
     const historyTagsList = ref<ITagsList[]>([])
 
+    const tagsPath = computed(() => {
+        return tagsList.value.map(item => item.path)
+    })
+
     // 当前路径
     const currentPath = ref('')
     // 缓存的标签数据
@@ -23,6 +27,7 @@ export const useTagsStore = defineStore('tags', () => {
     if (localStorage.getItem('local_tags_list') && Array.isArray(local_tags_list)) {
         tagsList.value = local_tags_list
     }
+    console.log(tagsList.value)
 
     // 获取并且添加标签列表
     const getTagsListItem = (tagsListItem: ITagsList): void => {
@@ -68,6 +73,7 @@ export const useTagsStore = defineStore('tags', () => {
         tagsList,
         historyTagsList,
         currentPath,
+        tagsPath,
         getTagsListItem,
         colseCurrentTagsListItem,
         deleteTagesListItem,

@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 
 import { useSideBarStore } from '../stores/sidebar'
+import { useTagsStore } from '../stores/tags'
 
 import TagsView from './TagsView.vue'
 
@@ -9,11 +10,15 @@ const router = useRouter()
 
 const store = useSideBarStore()
 
+const tagsStore = useTagsStore()
+
 // 退出登录
 const handleCommand = (command: string) => {
 
     if (command === 'loginOut') {
         localStorage.removeItem('lor')
+        localStorage.removeItem('local_tags_list')
+        tagsStore.tagsList = []
         router.push('/login')
     }
 }
