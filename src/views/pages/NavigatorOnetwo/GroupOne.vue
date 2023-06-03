@@ -13,6 +13,7 @@ const resultNum = computed<number>((): number => {
     const decimalPlaces2 = countDecimalPlaces(num2.value)
     // 判断哪一个小数更多，然后就用次方转化的整数大一点，不然就不能统一都是整数了，
     // 出现这种 20.13 与 20.156 相同的就会变成 2013 2015.6 有浮点数的出现还是容易造成精度丢失
+    // 重新了解浮点数精度问题
     let resultPlaces: number = 0
 
     decimalPlaces1 > decimalPlaces2 ? resultPlaces = decimalPlaces1 : resultPlaces = decimalPlaces2
