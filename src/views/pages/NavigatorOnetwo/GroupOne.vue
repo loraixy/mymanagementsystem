@@ -65,12 +65,33 @@ function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
 }
 
 // 性能优化版
+// 付款数据
+const moneyData = ref([{
+    type: '垫付',
+    money: 17.2
+},
+{
+    type: '微信',
+    money: 0
+},
+{
+    type: '现金',
+    money: 27.2
+}])
+// 实收金额
+const totalIncome = ref(80)
+// 总价
+const totalPrice = computed(() => 
+moneyData.value.reduce((acc, cur) => acc + cur.money, 0))
+// 找补
+const makeUpFor = computed(() => totalPrice.value - totalIncome.value)
 
 </script>
 
 <template>
-    <div>树形数据修改
+    <div>
         <div>
+            树形数据修改
             <p>这里是js经典的精度问题</p>
             <ElInput type="text" v-model="num1" />
             <ElInput type="text" v-model="num2" />
@@ -83,6 +104,18 @@ function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
             </p>
             <p>{{ multiplicationNun }}</p>
 
+        </div>
+        <div class=" w-80 ">
+            计算
+            <div class=" w-full " v-for="item in moneyData" :key="item.type">
+                <ElInput v-model.number="item.money" />
+            </div>
+            <div>实收: {{ totalIncome }}</div>
+            找补
+            <div class=" w-full ">
+                <ElInput v-model.number="makeUpFor" />
+            </div>
+            
         </div>
     </div>
 </template>
