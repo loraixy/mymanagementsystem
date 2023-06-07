@@ -25,19 +25,17 @@ onUnmounted(() => {
 onBeforeRouteUpdate((to, form) => {
   console.log('from failure =>', to.meta.title, to.meta.permiss, to.fullPath)
   if (!to.meta.savePage || !form.meta.savePage) return
-  const title = to.meta.title as string
+
   const name = to.name as string
-  const isSave = to.meta.isSave as boolean
-  const path = to.path as string
-  tagsStore.currentPath = path
+  tagsStore.currentPath = to.path
 
   form.fullPath === '/dashboard' && tagsStore.getTagsListItem({ title: form.meta.title, name: form.meta.title, path: form.fullPath, closeBoldIconShow: false })
 
   tagsStore.getTagsListItem({
-    title,
     name,
-    isSave,
-    path,
+    path: to.path,
+    title: to.meta.title,
+    isSave: to.meta.isSave,
     closeBoldIconShow: false
   })
 })
