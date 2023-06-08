@@ -17,17 +17,17 @@ export const useTagsStore = defineStore('tags', () => {
     const historyTagsList = ref<ITagsList[]>([])
 
     const tagsPath = computed(() => {
-        return tagsList.value.map(item => item.path)
+        return tagsList.value.map(item => item.name)
     })
 
     // 当前路径
     const currentPath = ref('')
-    // 缓存的标签数据
-    const local_tags_list = JSON.parse(localStorage.getItem('local_tags_list') as string)
-    if (localStorage.getItem('local_tags_list') && Array.isArray(local_tags_list)) {
-        tagsList.value = local_tags_list
-    }
-    console.log(tagsList.value)
+    // // 缓存的标签数据
+    // const local_tags_list = JSON.parse(localStorage.getItem('local_tags_list') as string)
+    // if (localStorage.getItem('local_tags_list') && Array.isArray(local_tags_list)) {
+    //     tagsList.value = local_tags_list
+    // }
+    // console.log(tagsList.value)
 
     // 获取并且添加标签列表
     const getTagsListItem = (tagsListItem: ITagsList): void => {
@@ -41,8 +41,8 @@ export const useTagsStore = defineStore('tags', () => {
             }
             return acc
         }, [])
-        // 缓存数据到本地
-        localStorageTagsList(tagsList.value)
+        // // 缓存数据到本地
+        // localStorageTagsList(tagsList.value)
     }
 
     // 关闭当前标签
@@ -63,10 +63,10 @@ export const useTagsStore = defineStore('tags', () => {
     const closeOtherTagsListItem = (): void => {
 
     }
-    // 标签页本地缓存
-    const localStorageTagsList = (list: ITagsList[]): void => {
-        localStorage.setItem('local_tags_list', JSON.stringify(list))
-    }
+    // // 标签页本地缓存
+    // const localStorageTagsList = (list: ITagsList[]): void => {
+    //     localStorage.setItem('local_tags_list', JSON.stringify(list))
+    // }
 
     return {
         tagsList,
@@ -78,6 +78,6 @@ export const useTagsStore = defineStore('tags', () => {
         deleteTagesListItem,
         clearTagesList,
         closeOtherTagsListItem,
-        localStorageTagsList
+        // localStorageTagsList
     }
 })
