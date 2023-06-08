@@ -81,10 +81,20 @@ const moneyData = ref([{
 // 实收金额
 const totalIncome = ref(80)
 // 总价
-const totalPrice = computed(() => 
-moneyData.value.reduce((acc, cur) => acc + cur.money, 0))
+const totalPrice = computed(() =>
+    moneyData.value.reduce((acc, cur) => acc + cur.money, 0))
 // 找补
 const makeUpFor = computed(() => totalPrice.value - totalIncome.value)
+
+// const city = computed({
+//     get() {
+//         return citystore().state.city
+//     },
+//     set(val) {
+//         console.log(val);
+//         cityNumber()
+//     },
+// })
 
 </script>
 
@@ -115,7 +125,7 @@ const makeUpFor = computed(() => totalPrice.value - totalIncome.value)
             <div class=" w-full ">
                 <ElInput v-model.number="makeUpFor" />
             </div>
-            
+
         </div>
     </div>
 </template>

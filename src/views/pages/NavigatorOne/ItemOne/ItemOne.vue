@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, toRaw } from 'vue'
 
 import ItemOneHeader from './components/ItemOneHeader.vue';
 const title = ref('')
@@ -24,6 +24,10 @@ const ageFn = (val: number): void => {
     age.value = val
 }
 
+const testData = ref('nihao')
+
+const s = toRaw(testData)
+
 </script>
 
 <template>
@@ -31,6 +35,7 @@ const ageFn = (val: number): void => {
         <ItemOneHeader :age="age" @age-fn="ageFn"></ItemOneHeader>
         <h1>This is an dashboard page tIEMone</h1>
         <h2>{{ title }}</h2>
+        {{ s }}
         <img :src="images" alt="这是一张图片">
         <!-- https://www.apple.com.cn/105/media/us/airpods-pro/2022/d2deeb8e-83eb-48ea-9721-f567cf0fffa8/anim/spatial-audio/medium.mp4 -->
         <video

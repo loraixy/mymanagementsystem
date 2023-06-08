@@ -29,7 +29,12 @@ onBeforeRouteUpdate((to, form) => {
   const name = to.name as string
   tagsStore.currentPath = to.path
 
-  form.fullPath === '/dashboard' && tagsStore.getTagsListItem({ title: form.meta.title, name: form.meta.title, path: form.fullPath, closeBoldIconShow: false })
+  form.fullPath === '/dashboard' && tagsStore.getTagsListItem(
+    {
+      title: form.meta.title,
+      name: form.meta.title,
+      path: form.fullPath, closeBoldIconShow: false
+    })
 
   tagsStore.getTagsListItem({
     name,
