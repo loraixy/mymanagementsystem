@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const bodyData = ref('')
 
@@ -8,6 +8,13 @@ fetch('https://apis.netstart.cn/zhihudaily/story/9741200').then(req => req.json(
     bodyData.value = res.story.body
 
 })
+onMounted(() => {
+    setTimeout(() => {
+        window.scrollTo(10000000, 1000)
+        console.log(window.scrollY, window.screenX, window.scrollX)
+    }, 3000)
+})
+
 </script>
 
 <template>

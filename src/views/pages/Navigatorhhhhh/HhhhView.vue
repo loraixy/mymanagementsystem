@@ -46,11 +46,12 @@ const getData = () => {
         console.log("hospitalList =>", hospitalList.value)
     })
 }
+getData()
 
 const dataTags = computed(() => {
     // console.log()
     console.log(tagsStore.isCollapse, '我是hhhh页面的')
-    getData()
+
     return tagsStore.isCollapse
 })
 console.log(dataTags, '奇怪')
