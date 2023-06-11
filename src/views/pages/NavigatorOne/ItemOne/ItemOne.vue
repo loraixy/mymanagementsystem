@@ -37,6 +37,8 @@ const s = toRaw(testData)
         <h2>{{ title }}</h2>
         {{ s }}
         <img :src="images" alt="这是一张图片">
+        <!-- https://bucket-bnq-app.oss-cn-hangzhou.aliyuncs.com/emallmgr/content/cases/1557711192811.jpg -->
+        <!-- https://bucket-bnq-app.oss-cn-hangzhou.aliyuncs.com/emallmgr/content/cases/1557711192811.jpg?x-oss-process=image/format,webp -->
         <!-- https://www.apple.com.cn/105/media/us/airpods-pro/2022/d2deeb8e-83eb-48ea-9721-f567cf0fffa8/anim/spatial-audio/medium.mp4 -->
         <video
             src="https://www.apple.com.cn/105/media/cn/airpods-pro/2022/d2deeb8e-83eb-48ea-9721-f567cf0fffa8/anim/pairing/medium.mp4#t=4.471418"

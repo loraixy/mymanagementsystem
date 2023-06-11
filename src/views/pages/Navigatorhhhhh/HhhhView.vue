@@ -62,7 +62,7 @@ console.log(dataTags, '奇怪')
 
 endIndex.value = visibleCount.value + startIndex.value
 // 处理滚动监听
-const handleTableScroll = (event: UIEvent): void => {
+const  handleTableScroll = (event: UIEvent): void => {
 
     const target: HTMLElement | null = event.target instanceof HTMLElement ? event.target : null
     // console.log(target?.scrollTop)
