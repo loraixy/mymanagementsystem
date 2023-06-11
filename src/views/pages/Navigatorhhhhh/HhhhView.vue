@@ -1,10 +1,7 @@
-<script setup lang="ts">
+<script setup lang="ts" >
 import { ref, computed, onMounted } from 'vue'
-import { useSideBarStore } from '../../../stores/sidebar'
 // 医院报表数据类型接口
 import type { IHospitalList } from '../../../typings/hhhh'
-
-const tagsStore = useSideBarStore()
 
 // 医院报表数据
 const hospitalList = ref<IHospitalList[]>([])
@@ -46,19 +43,9 @@ const getData = () => {
         console.log("hospitalList =>", hospitalList.value)
     })
 }
+
 getData()
 
-const dataTags = computed(() => {
-    // console.log()
-    console.log(tagsStore.isCollapse, '我是hhhh页面的')
-
-    return tagsStore.isCollapse
-})
-console.log(dataTags, '奇怪')
-
-// watch(dataTags, (val) => {
-//     console.log(val)
-// })
 
 endIndex.value = visibleCount.value + startIndex.value
 // 处理滚动监听
@@ -84,7 +71,6 @@ onMounted(() => {
 
 <template>
     <div>
-        <div>{{ dataTags }}</div>
         <ElButton @click="listShow = true">使用长列表</ElButton>
         <ElButton @click="listShow = false">没有使用</ElButton>
         <h2>未作处理的表格， 是明显可以感受到卡顿的，开始渲染时间长且侧边栏也会卡顿 , 当前列表项数量：{{ hospitalList.length }}</h2>

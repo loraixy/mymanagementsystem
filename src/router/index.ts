@@ -24,12 +24,12 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/',
-    name: 'home',
+    name: 'HomeView',
     component: HomeView,
     children: [
       {
         path: 'dashboard',
-        name: 'dashboard',
+        name: 'DashBoard',
         meta: {
           savePage: true,
           title: '系统首页',
@@ -40,7 +40,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'item-one',
-        name: 'itemOne',
+        name: 'ItemOne',
         meta: {
           savePage: true,
           title: 'itemone',
@@ -51,7 +51,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'item-two',
-        name: 'itemTwo',
+        name: 'ItemTwo',
         meta: {
           savePage: true,
           title: 'itemTwo',
@@ -62,7 +62,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'virtual-list',
-        name: 'VirtualList',
+        name: 'HhhhView',
         meta: {
           savePage: true,
           title: '虚拟列表',
@@ -74,7 +74,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'group-one',
-        name: 'groupOne',
+        name: 'GroupOne',
         meta: {
           savePage: true,
           title: '树形数据',
@@ -88,7 +88,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/login',
-    name: 'login',
+    name: 'LoginView',
     meta: {
       savePage: false,
       title: '登录'
