@@ -1,4 +1,4 @@
-export interface IrouterMate {
+export interface RouterMate {
     savePage: true,
     title: string,
     permiss?: '1',
