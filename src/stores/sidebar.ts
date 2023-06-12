@@ -6,7 +6,10 @@ export const useSideBarStore = defineStore('sidebar', () => {
 
     // 获取媒体查询值
     const mq = window.matchMedia('(max-width: 480px)')
-    // 用于处理侧边栏的显示状态
+    /**
+     *  用于处理侧边栏的显示状态
+     * @param {*} 
+     */
     const handleIsCollapse = (): void => {
         if (mq.matches) return
         isCollapse.value = !isCollapse.value
