@@ -12,41 +12,29 @@ import LoginModel from './components/LoginModel.vue'
 </script>
 
 <template>
-    <div>
-        <div>
-            <div class=" flex h-screen relative ">
-                <div class=" flex-1 h-full bg-white "></div>
-                <div class=" flex-1 h-full bg-[--lor-blue] "></div>
-                <Transition name="card">
-                    <div class=" login-card " v-show="showLoginModel">
-                        <main class=" flex h-full  rounded-sm bg-white text-slate-200 ">
-                            <div
-                                class=" flex flex-col justify-center items-center w-1/2 bg-gray-100 max-md:w-full transition-all  ">
-                                <!-- <el-row class="mb-4">
-                                    <el-button>Default</el-button>
-                                    <el-button type="primary">Primary</el-button>
-                                    <el-button type="success">Success</el-button>
-                                    <el-button type="info">Info</el-button>
-                                    <el-button type="warning">Warning</el-button>
-                                    <el-button type="danger">Danger</el-button>
-                                </el-row> -->
-                                <div class=" w-[18.75rem] p-7 rounded-sm text-gray-400 bg-white ">
-                                    <!-- 登录表单组件 -->
-                                    <LoginModel></LoginModel>
-                                </div>
+    <div class=" flex h-screen relative ">
+            <div class=" flex-1 h-full bg-white "></div>
+            <div class=" flex-1 h-full bg-[--lor-blue] "></div>
+            <Transition name="card">
+                <div class=" login-card " v-show="showLoginModel">
+                    <main class=" flex h-full  rounded-sm bg-white text-slate-200 ">
+                        <div
+                            class=" flex flex-col justify-center items-center w-1/2 bg-gray-100 max-md:w-full transition-all  ">
+                            <div class=" w-[18.75rem] p-7 rounded-sm text-gray-400 bg-white ">
+                                <!-- 登录表单组件 -->
+                                <LoginModel></LoginModel>
                             </div>
-                            <div class=" h-full w-1/2 bg-[--lor-blue] max-md:hidden ">
-                                登录模块
-                                <span class=" drop-shadow ">UserLogin</span>
-                                欢迎登录， Lor 后台管理系统
-                            </div>
-                        </main>
+                        </div>
+                        <div class=" h-full w-1/2 bg-[--lor-blue] max-md:hidden ">
+                            登录模块
+                            <span class=" drop-shadow ">UserLogin</span>
+                            欢迎登录， Lor 后台管理系统
+                        </div>
+                    </main>
 
-                    </div>
-                </Transition>
-            </div>
+                </div>
+            </Transition>
         </div>
-    </div>
 </template>
 
 <style>
