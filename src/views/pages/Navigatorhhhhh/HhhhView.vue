@@ -37,10 +37,28 @@ const elTableTransform = computed<string>(() => {
     return `translate3d(0,${startOffset.value}px,0)`
 })
 
+interface ITest {
+    type: string
+    getType: () => void
+}
+
+const test = {
+    type: 'sdf',
+    getType: function (this: ITest) {
+
+        return () => {
+
+            return this.type
+        }
+    }
+}
+
+// addEventListener()
+
 const getData = () => {
     fetch('hospitalList.json').then(req => req.json()).then(res => {
         hospitalList.value = res.data[0]
-        console.log("hospitalList =>", hospitalList.value)
+        console.log("hospitalList =>", hospitalList.value, hospitalList, test)
     })
 }
 
