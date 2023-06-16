@@ -92,7 +92,7 @@ class Obj {
      * @param str 字符
      */
     public sayhello(str: string): void {
-        console.log(str)
+        console.log(str + 'woshishui')
     }
 
     private privateFun(str: string): {name: string} {
