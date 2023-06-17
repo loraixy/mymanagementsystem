@@ -114,7 +114,7 @@ router.beforeEach((to, from, next) => {
 
     console.log(to, from)
 
-    next({ name: 'login' })
+    next('/login')
     /** 这里不使用next 是因为我还在login页面的时候手动更改浏览器的地址会导致虽然重新回到login页面，
      *  但是浏览器的地址却没有发生变化
      *  主要还是回到/ 会出现
