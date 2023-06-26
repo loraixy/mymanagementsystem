@@ -8,8 +8,17 @@ let child;
 const options = { cwd: __dirname };
 const app = http.createServer((req, res) => {
     child = spawn(npmPath, ['run', 'dev'], options);
-    res.end('ok');
+   
+    child.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
 
+        if (data.toString().includes('VITE')) {
+            // 在这里进行项目启动完毕后的处理
+            res.end('ok');
+            console.log('npm run dev succeeded!')
+        }
+    })
+    
 })
 
 app.listen(1337, () => {
@@ -19,6 +28,10 @@ app.listen(1337, () => {
 
     child.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
-    }
-    )
+
+        if (data.toString().includes('VITE')) {
+            // 在这里进行项目启动完毕后的处理
+            console.log('npm run dev succeeded!')
+        }
+    })
 })
