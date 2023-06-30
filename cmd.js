@@ -142,6 +142,46 @@ const cp = require('child_process');
 const path = require('path');
 
 const readline = require('readline');
+
+
+const net = require('net');
+
+function isPortAvailable(port) {
+    return new Promise((resolve, reject) => {
+        const server = net.createServer();
+
+        server.once('error', (err) => {
+            if (err.code === 'EADDRINUSE') {
+                resolve(false);
+            } else {
+                reject(err);
+            }
+        });
+
+        server.once('listening', () => {
+            server.close();
+            resolve(true);
+        });
+
+        server.listen(port, '127.0.0.1');
+    });
+}
+
+// 示例使用
+const port = 8081;
+isPortAvailable(port)
+    .then((available) => {
+        if (available) {
+            // 可用，执行启动新的父进程的代码
+            console.log(`Port ${port} is available.`);
+        } else {
+            // 不可用，端口已被占用
+            console.log(`Port ${port} is already in use.`);
+        }
+    })
+    .catch((err) => {
+        console.error(err);
+    });
 // 这里还有一个问题，这个地方并不是自动检索的，所以还是要手动切换一次，有些人的电脑上的npm没有npm.cmd
 const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
 
