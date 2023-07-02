@@ -27,3 +27,24 @@ export interface IHospitalList {
     ZD: string
     ZDLX: string
 }
+
+
+class HelloWorld {
+    constructor() {
+
+    }
+
+    init() {
+        HelloWorld.main([''])
+    }
+
+    public static main(arg: string[]): void {
+        console.log('helloWorld', arg)
+    }
+}
+
+const helloWorld = new HelloWorld()
+
+console.log(helloWorld)
+
+
