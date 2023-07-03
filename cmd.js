@@ -5,8 +5,6 @@ const cp = require('child_process');
 
 const path = require('path');
 
-const readline = require('readline');
-
 const net = require('net');
 
 // 这里还有一个问题，这个地方并不是自动检索的，所以还是要手动切换一次，有些人的电脑上的npm没有npm.cmd
@@ -26,16 +24,14 @@ const config = {
     port: 8081,
     host: '127.0.0.1',
 }
-
 let child;
-let rl;
 // 判断端口占用情况
 function isPortAvailable(port, host) {
     return new Promise((resolve, reject) => {
+
         const server = net.createServer();
 
         server.once('error', (err) => {
-
             if (err.code === 'EADDRINUSE') {
                 resolve(false);
             } else {
@@ -45,7 +41,6 @@ function isPortAvailable(port, host) {
 
         server.once('listening', () => {
             server.close();
-
             resolve(true);
         });
 
@@ -56,17 +51,11 @@ function isPortAvailable(port, host) {
 function commandOutput(child) {
     return new Promise((resolve, reject) => {
         try {
-            // 创建交互式线程
-            rl = readline.createInterface({
-                input: child.stderr,
-                output: process.stdout,
-                terminal: false
-            });
 
-            rl.on('line', (line) => {
-                // 用 "\x1b[1A\x1b[K" 清空上一个 console.log() 的输出
-                console.log('\x1b[1A\x1b[K', line);
-            });
+            child.stderr.on('data', (data) => {
+                console.log('\x1b[1A\x1b[K', data.toString());
+
+            })
 
             child.stdout.on('data', (data) => {
                 console.log(data.toString());
@@ -148,7 +137,7 @@ function createServer(port, host) {
     });
 
 };
-
+// 初始服务
 function init(port, host) {
     isPortAvailable(port, host)
         .then((available) => {
