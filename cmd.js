@@ -1,4 +1,4 @@
-// 还有问题，信息显示不完全，那个百分之多少的并没有展示全面
+//  by lor 2023-07-04
 const http = require('http');
 
 const cp = require('child_process');
@@ -23,9 +23,20 @@ let spawnOptions = {
 const config = {
     port: 8081,
     host: '127.0.0.1',
-}
-let child;
-// 判断端口占用情况
+};
+// spwan返回值
+let child = null;
+// 记录当前连续的未使用端口数量
+let count = 0;
+// 最大连续未被使用端口数量
+let continuity = 2;
+
+/**
+ * 检测端口占用情况
+ * @param {number} port 
+ * @param {string} host 
+ * @returns {Promise<boolean>}
+ */
 function isPortAvailable(port, host) {
     return new Promise((resolve, reject) => {
 
@@ -47,7 +58,11 @@ function isPortAvailable(port, host) {
         server.listen(port, host);
     });
 }
-// 输出模式，和样式
+/**
+ * 输出模式，和样式
+ * @param {cp.ChildProcess} child 
+ * @returns {Promise<void>}
+ */
 function commandOutput(child) {
     return new Promise((resolve, reject) => {
         try {
@@ -74,7 +89,11 @@ function commandOutput(child) {
         };
     });
 };
-// 服务创建
+/**
+ * 创建服务
+ * @param {number} port 
+ * @param {string} host 
+ */
 function createServer(port, host) {
     const app = http.createServer((req, res) => {
 
@@ -97,7 +116,7 @@ function createServer(port, host) {
             if (error) {
                 console.error(`执行命令出错: ${error}`);
                 return;
-            }
+            };
             console.log('子进程已关闭。');
         });
 
@@ -107,7 +126,7 @@ function createServer(port, host) {
 
         if (req.url.split('=')[1]) {
             query = req.url.split('=')[1];
-        }
+        };
 
         console.log('query =>', query);
 
@@ -121,9 +140,10 @@ function createServer(port, host) {
     app.listen(port, host, () => {
         // 在控制台输出蓝色且加粗的文字 '\x1b[34;1m' val '\x1b[0m'
         port = app.address().port;
-        console.log('create server at', '\x1b[34;1m', `${host}:${app.address().port}`, '\x1b[0m');
+        console.log('create server at', '\x1b[34;1m', `${host}:\u001b[36m${app.address().port}\u001b[0m`, '\x1b[0m');
 
         console.log('cmd.js NODE_ENV =>', process.env.NODE_ENV);
+
         spawnOptions = {
             ...spawnOptions,
             env: {
@@ -132,24 +152,37 @@ function createServer(port, host) {
             },
         };
         process.env.PORT = port; // 添加这一行
-        child = cp.spawn(npmPath, ['run', 'dev'], spawnOptions);
+        child = cp.spawn(npmPath, ['run', process.env.NODE_ENV === 'development' ? 'dev' : process.env.NODE_ENV], spawnOptions);
         commandOutput(child);
     });
 
 };
-// 初始服务
+/**
+ * 初始服务
+ * @param {number} port 
+ * @param {string} host 
+ */
 function init(port, host) {
     isPortAvailable(port, host)
         .then((available) => {
             if (available) {
-                // 可用，执行启动新的父进程的代码
-                console.log(port, host)
-                createServer(port, host)
-                console.log(`Port ${port} is available.`);
+                count++
+                if (count >= continuity) {
+                    // 可用，执行启动新的父进程的代码
+                    createServer(port - 1, host)
+                    console.log(`\u001b[32mavailable:\u001b[0m Port ${port} is available.`);
+                    count = 0
+                } else {
+                    // 不可用，端口已被占用
+                    init(port + 1, host);
+                    console.log(`\u001b[32mavailable:\u001b[0m Port ${port} is available.`);
+                }
+
             } else {
+
                 // 不可用，端口已被占用
                 init(port + 1, host);
-                console.log(`Port ${port} is already in use ${host}. Trying next port...`);
+                console.log(`\u001b[35mprompt:\u001b[0m Port ${port} is already in use ${host}. Trying next port...`);
             }
         })
         .catch((err) => {
