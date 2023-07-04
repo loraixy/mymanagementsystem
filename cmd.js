@@ -1,4 +1,4 @@
-//  by lor 2023-07-04
+// by lor 2023-07-04
 const http = require('http');
 
 const cp = require('child_process');
@@ -108,7 +108,7 @@ function createServer(port, host) {
         // 要终止的进程ID
         const processId = child.pid;
 
-        // 根据操作系统选择不同的终止命令 暂时只有windows 单纯用kill我没办法把那个端口什么的也关闭，最好就采用了这个命令 child.kill('SIGINT')
+        // 根据操作系统选择不同的终止命令 暂时只有windows 单纯用kill我没办法把那个端口什么的也关闭，最后就采用了这个命令 child.kill('SIGINT')
         const killCommand = process.platform === 'win32' ? `taskkill /PID ${processId} /T /F` : `kill ${processId}`;
 
         // 执行终止命令
