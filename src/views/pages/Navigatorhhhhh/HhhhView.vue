@@ -37,6 +37,8 @@ const elTableTransform = computed<string>(() => {
     return `translate3d(0,${startOffset.value}px,0)`
 })
 
+console.log('elTableTransform', elTableTransform)
+
 interface ITest {
     type: string
     getType: () => void
@@ -54,6 +56,7 @@ const test = {
 }
 
 // addEventListener()
+
 
 const getData = () => {
     fetch('hospitalList.json').then(req => req.json()).then(res => {
@@ -89,7 +92,6 @@ let pickedCard2 = pickCard(15)
 alert("card: " + pickedCard2.card + " of " + pickedCard2.suit)
 
 getData()
-
 
 endIndex.value = visibleCount.value + startIndex.value
 // 处理滚动监听
