@@ -8,7 +8,9 @@ const path = require('path');
 const net = require('net');
 
 // 这里还有一个问题，这个地方并不是自动检索的，所以还是要手动切换一次，有些人的电脑上的npm没有npm.cmd
-const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
+// const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
+const npmPath = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
+
 
 // spawn的配置选项
 let spawnOptions = {
