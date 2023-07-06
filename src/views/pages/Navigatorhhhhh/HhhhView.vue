@@ -37,7 +37,7 @@ const elTableTransform = computed<string>(() => {
     return `translate3d(0,${startOffset.value}px,0)`
 })
 
-console.log('elTableTransform', elTableTransform)
+console.log('elTableTransform =>', elTableTransform)
 
 interface ITest {
     type: string
