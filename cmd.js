@@ -85,6 +85,7 @@ function commandOutput(child) {
 
             child.on('exit', (code) => {
                 console.log(`child process exited with code ${code}`);
+                console.log('当前已退,再次ctrl退出程序');
             });
         } catch (error) {
             reject(error);
