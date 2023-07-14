@@ -8,6 +8,7 @@
     "test": "vite --mode test",
     "yege": "vite --mode yege",
     "build": "run-p type-check build-only",
+    "start": "set NODE_ENV=development&&node cmd.js",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"

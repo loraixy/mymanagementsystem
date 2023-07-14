@@ -76,7 +76,7 @@ function commandOutput(child) {
 
             child.stdout.on('data', (data) => {
                 console.log(data.toString());
-                if (data.toString().includes('Local:')) {
+                if (data.toString().includes('Local:') || data.toString().includes('--host')) {
                     // 在这里进行项目启动完毕后的处理
                     resolve()
                     console.log('npm run dev succeeded!');
@@ -105,39 +105,44 @@ function createServer(port, host) {
         res.setHeader("Access-Control-Allow-Credentials", true);
 
         res.setHeader("Access-Control-Request-Method", "PUT,POST,GET,DELETE,OPTIONS");
+        console.log(req.url)
+        if (req.url.split('?')[0] === '/serve') {
 
-        console.log(child.pid);
+            console.log(child.pid);
 
-        // 要终止的进程ID
-        const processId = child.pid;
+            // 要终止的进程ID
+            const processId = child.pid;
 
-        // 根据操作系统选择不同的终止命令 暂时只有windows 单纯用kill我没办法把那个端口什么的也关闭，最后就采用了这个命令 child.kill('SIGINT')
-        const killCommand = process.platform === 'win32' ? `taskkill /PID ${processId} /T /F` : `kill ${processId}`;
+            // 根据操作系统选择不同的终止命令 暂时只有windows 单纯用kill我没办法把那个端口什么的也关闭，最后就采用了这个命令 child.kill('SIGINT')
+            const killCommand = process.platform === 'win32' ? `taskkill /PID ${processId} /T /F` : `kill ${processId}`;
 
-        // 执行终止命令
-        cp.exec(killCommand, error => {
-            if (error) {
-                console.error(`执行命令出错: ${error}`);
-                return;
+            // 执行终止命令
+            cp.exec(killCommand, error => {
+                if (error) {
+                    console.error(`执行命令出错: ${error}`);
+                    return;
+                };
+                console.log('子进程已关闭。');
+            });
+
+            console.log("url =>", req.url);
+
+            let query = 'dev';
+
+            if (req.url.split('=')[1]) {
+                query = req.url.split('=')[1];
             };
-            console.log('子进程已关闭。');
-        });
 
-        console.log("url =>", req.url);
+            console.log('query =>', query);
 
-        let query = 'dev';
+            child = cp.spawn(npmPath, ['run', query], spawnOptions);
 
-        if (req.url.split('=')[1]) {
-            query = req.url.split('=')[1];
-        };
-
-        console.log('query =>', query);
-
-        child = cp.spawn(npmPath, ['run', query], spawnOptions);
-
-        commandOutput(child).then(() => {
-            res.end('hello');
-        });
+            commandOutput(child).then(() => {
+                res.end('hello');
+            });
+        } else {
+            res.end('错误')
+        }
     });
 
     app.listen(port, host, () => {
