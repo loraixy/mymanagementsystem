@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // import { ref } from "vue";
+import CommandView from '../../command/CommandView.vue';
 
 /**
  * 获取当前事件
@@ -9,6 +10,7 @@
 <template>
   <div class="dashboard">
     <h1>This is an dashboard page 我的桌面</h1>
+    <CommandView />
   </div>
 </template>
 

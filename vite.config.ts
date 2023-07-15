@@ -12,7 +12,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import IconResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 // 这是node的那个写的，我在node项目用这个，在浏览器环境vite的这个去修改import.meta.env.mode的
-console.log("process.env =>", process.env.NODE_ENV)
+console.log("process.env =>", process.env.NODE_ENV, process.env.PORT)
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {

@@ -25,13 +25,14 @@ let spawnOptions = {
 const config = {
     port: 8081,
     host: '127.0.0.1',
+    viteHost: ''
 };
 // spwan返回值
 let child = null;
 // 记录当前连续的未使用端口数量
 let count = 0;
 // 最大连续未被使用端口数量
-let continuity = 2;
+let continuity = 1;
 
 /**
  * 检测端口占用情况
@@ -106,7 +107,8 @@ function createServer(port, host) {
 
         res.setHeader("Access-Control-Request-Method", "PUT,POST,GET,DELETE,OPTIONS");
         console.log(req.url)
-        if (req.url.split('?')[0] === '/serve') {
+        const url = req.url.split('?')[0]
+        if (url === '/cmd') {
 
             console.log(child.pid);
 
@@ -127,36 +129,49 @@ function createServer(port, host) {
 
             console.log("url =>", req.url);
 
-            let query = 'dev';
-
-            if (req.url.split('=')[1]) {
-                query = req.url.split('=')[1];
+            let query = {
+                cmd: 'dev',
+                server: ''
             };
 
-            console.log('query =>', query);
+            req.url.split('?')[1]('&')
 
-            child = cp.spawn(npmPath, ['run', query], spawnOptions);
+            console.log('query =>', query);
+            spawnOptions = {
+                ...spawnOptions,
+                env: {
+                    FORCE_COLOR: '1', 
+                    PORT: port,
+                    VITE_PARENT_PORT: port,
+                    VITE_PARENT_HOST: host,
+                    VITE_API_BASE_URL: baseUrl
+                },
+            };
+            child = cp.spawn(npmPath, ['run', query.cmd], spawnOptions);
 
             commandOutput(child).then(() => {
                 res.end('hello');
             });
         } else {
-            res.end('错误')
+            res.end('error')
         }
     });
 
     app.listen(port, host, () => {
         // 在控制台输出蓝色且加粗的文字 '\x1b[34;1m' val '\x1b[0m'
         port = app.address().port;
+        console.log(app.address())
         console.log('create server at', '\x1b[34;1m', `${host}:\u001b[36m${app.address().port}\u001b[0m`, '\x1b[0m');
 
-        console.log('cmd.js NODE_ENV =>', process.env.NODE_ENV);
+        console.log('cmd.js NODE_ENV =>', process.env.NODE_ENV, process.env.VITE_PORT);
 
         spawnOptions = {
             ...spawnOptions,
             env: {
                 FORCE_COLOR: '1',
-                PORT: port + 1,
+                PORT: port,
+                VITE_PARENT_PORT: port,
+                VITE_PARENT_HOST: host
             },
         };
         process.env.PORT = port; // 添加这一行
@@ -187,7 +202,6 @@ function init(port, host) {
                 }
 
             } else {
-
                 // 不可用，端口已被占用
                 init(port + 1, host);
                 console.log(`\u001b[35mprompt:\u001b[0m Port ${port} is already in use ${host}. Trying next port...`);
