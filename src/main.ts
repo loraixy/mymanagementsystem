@@ -27,9 +27,9 @@ app.use(router)
 
 app.mount('#app')
 
-console.log(' 当前运行模式 ', import.meta.env.MODE)
-console.log(' NODE_ENV: ', import.meta.env.VITE_NODE_ENV);
-console.log(import.meta.env.VITE_PARENT_PORT)
-console.log(import.meta.env.VITE_PARENT_HOST)
-console.log('VITE_APP_TITLE', import.meta.env.VITE_APP_TITLE)
+// console.log(' 当前运行模式 ', import.meta.env.MODE)
+// console.log(' NODE_ENV: ', import.meta.env.VITE_NODE_ENV);
+// console.log(import.meta.env.VITE_PARENT_PORT)
+// console.log(import.meta.env.VITE_PARENT_HOST)
+// console.log('VITE_APP_TITLE', import.meta.env.VITE_APP_TITLE)
 

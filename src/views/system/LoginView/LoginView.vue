@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
+import LoginModel from './components/LoginModel.vue'
 
 const showLoginModel = ref(false)
 
@@ -7,7 +8,7 @@ onMounted(() => {
     showLoginModel.value = true
 })
 
-import LoginModel from './components/LoginModel.vue'
+
 
 </script>
 

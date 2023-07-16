@@ -3,13 +3,17 @@
 import { useTagsStore } from '../stores/tags'
 import { storeToRefs } from 'pinia'
 
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 
 const tagsStore = useTagsStore()
+
+const router = useRouter()
 
 const { tagsList, currentPath } = storeToRefs(tagsStore)
 
 console.log(tagsStore.tagsList)
+
+console.log('currentPath =>', currentPath.value)
 
 </script>
 
@@ -23,8 +27,11 @@ console.log(tagsStore.tagsList)
                     <div class=" flex justify-between items-center w-24 mx-1 cursor-pointer select-none">
                         <span class=" leading-[47px]">{{ item.title }}</span>
 
-                        <span class=" flex items-center hover:bg-gray-400 rounded p-1 ">
-                            <ElIcon :size="12" v-show="item.closeBoldIconShow || item.path === currentPath">
+                        <span class=" flex items-center hover:bg-gray-400 rounded p-1 " @click.stop="tagsStore.deleteTagesListItem(item, pathName => {
+                            router.push(pathName)
+                        })">
+                            <ElIcon :size="12"
+                                v-show="(item.closeBoldIconShow || item.path === currentPath) && item.path !== '/dashboard'">
                                 <IEpCloseBold />
                             </ElIcon>
                         </span>

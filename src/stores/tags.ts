@@ -41,7 +41,7 @@ export const useTagsStore = defineStore('tags', () => {
             }
             return acc
         }, [])
-        // // 缓存数据到本地
+        // 缓存数据到本地
         // localStorageTagsList(tagsList.value)
     }
 
@@ -51,13 +51,17 @@ export const useTagsStore = defineStore('tags', () => {
     }
 
     // 删除标签
-    const deleteTagesListItem = (tagsListItem: ITagsList): void => {
+    const deleteTagesListItem = (tagsListItem: ITagsList, cb: (tagsItem:string ) => void | null): void => {
         console.log(tagsListItem)
         tagsList.value = tagsList.value.filter(item => item.path !== tagsListItem.path)
+        const path:string  = tagsList.value[tagsList.value.length - 1]?.path || '/'
+        console.log('path =>',path )
+        cb && cb(path)
     }
     // 清空标签
-    const clearTagesList = (): void => {
+    const clearTagesList = (cb: () => void | null): void => {
         tagsList.value = []
+        cb && cb()
     }
     // 关闭其他标签页
     const closeOtherTagsListItem = (): void => {

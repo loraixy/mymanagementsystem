@@ -50,6 +50,8 @@ export default defineConfig(({ mode }) => {
       }
     },
     server: {
+      hmr: true,
+      usePolling:true,
       proxy: {
         '/api': { // 匹配请求路径，代理的地址
           target: VITE_API_BASE_URL, // 代理的目标地址

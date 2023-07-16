@@ -20,13 +20,13 @@ declare module 'vue-router' {
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/dashboard'
-  },
-  {
-    path: '/',
     name: 'HomeView',
     component: HomeView,
     children: [
+      {
+        path: '/',
+        redirect: '/dashboard'
+      },
       {
         path: 'dashboard',
         name: 'DashBoard',
@@ -105,14 +105,14 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // 浏览器那个标题
-  document.title = `${to.meta.title} | ${import.meta.env.VITE_APP_TITLE}`
+  document.title = `${to.meta.title}  ${import.meta.env.VITE_APP_TITLE}`
   // 明天解决一下相同路径问题has模式的，得搞一个历史路由模式
-  console.log(to, from)
+  // console.log(to, from)
   const token = localStorage.getItem('lor')
   // console.log(token, to.path !== '/login' )
   if (!token && to.path !== '/login') {
 
-    console.log(to, from)
+    // console.log(to, from)
 
     next('/login')
     /** 这里不使用next 是因为我还在login页面的时候手动更改浏览器的地址会导致虽然重新回到login页面，
@@ -121,15 +121,15 @@ router.beforeEach((to, from, next) => {
      */
     // router.push('/login')
     nextTick(() => {
-      console.log('你什么时候执行')
+      // console.log('你什么时候执行')
       window.location.hash = "/login"
     })
-    console.log(window.location)
+    // console.log(window.location)
 
   } else if (token && to.path === '/login') {
     next('/dashboard')
   } else {
-    console.log('你执行了吗')
+    // console.log('你执行了吗')
     next()
   }
 })

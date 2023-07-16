@@ -11,6 +11,8 @@ const store = useSideBarStore()
 
 const { isCollapse } = storeToRefs(store)
 
+// const menus = ref([])
+
 const defaultActivePath = computed(() => {
     return route.path.substring(1, route.path.length)
 })
@@ -51,6 +53,17 @@ const defaultActivePath = computed(() => {
                 <ElMenuItem disabled index="home">item two</ElMenuItem>
             </ElMenuItemGroup>
         </ElSubMenu>
+        <!-- <ElSubMenu v-for="(item) in menus" :key="item.path" :index="item.id">
+            <template #title>
+                <ElIcon :size="20" color="#409EFC">
+                    <IEpCirclePlusFilled />
+                </ElIcon>
+                <span>{{ item.title }}</span>
+            </template>
+            <ElMenuItem index="item-one" v-for="menuItem in item.menu" :key="menuItem.path">
+                {{ menuItem.title }}
+            </ElMenuItem>
+        </ElSubMenu> -->
     </ElMenu>
 </template>
 

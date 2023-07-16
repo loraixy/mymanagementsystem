@@ -1,11 +1,6 @@
 <script setup lang="ts">
 // import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import { RouterView, useRoute } from 'vue-router'
-
-const route = useRoute()
-console.log(route)
-
-
+import { RouterView } from 'vue-router'
 </script>
 
 <template>

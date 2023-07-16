@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onUnmounted } from 'vue'
-import { RouterView, onBeforeRouteUpdate } from 'vue-router'
+import { RouterView, useRoute ,  onBeforeRouteUpdate } from 'vue-router'
 import { useSideBarStore } from '../../stores/sidebar'
 import { useTagsStore } from '../../stores/tags'
 
@@ -12,6 +12,8 @@ const userStore = useSideBarStore()
 
 const tagsStore = useTagsStore()
 
+const route = useRoute()
+
 // 监听浏览器mq的改变应该是
 userStore.mq.addEventListener('change', userStore.handleResize)
 // 改变大小
@@ -22,6 +24,13 @@ onUnmounted(() => {
   userStore.mq.removeEventListener('change', userStore.handleResize)
 })
 
+tagsStore.getTagsListItem({
+  title: route.meta.title, 
+  name: route.meta.title, 
+  path: route.fullPath, 
+  closeBoldIconShow: false
+})
+tagsStore.currentPath = route.fullPath
 onBeforeRouteUpdate((to, form) => {
   console.log('from failure =>', to.meta.title, to.meta.permiss, to.fullPath)
   if (!to.meta.savePage || !form.meta.savePage) return
