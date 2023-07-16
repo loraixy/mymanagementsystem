@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { onUnmounted } from 'vue'
-import { RouterView, useRoute ,  onBeforeRouteUpdate } from 'vue-router'
+import { onUnmounted, ref, getCurrentInstance, ComponentInternalInstance, ComponentPublicInstance } from 'vue'
+import { RouterView, useRoute, onBeforeRouteUpdate } from 'vue-router'
 import { useSideBarStore } from '../../stores/sidebar'
 import { useTagsStore } from '../../stores/tags'
+import { menu } from '../../apis/MenuManagement'
+import type { IMenu } from '../../typings/system'
 
 import HeaderView from '../../layout/HeaderView.vue'
 import SideBarView from '../../layout/SideBarView.vue'
@@ -14,20 +16,34 @@ const tagsStore = useTagsStore()
 
 const route = useRoute()
 
+const { proxy } = getCurrentInstance() as ComponentInternalInstance
+
+const { $title } = proxy as ComponentPublicInstance
+
+const menuList = ref<IMenu[]>([])
+
+const getMenuData = async (): Promise<void> => {
+  const { data: { data, code, message } } = await menu.getMenu()
+  menuList.value = data
+  localStorage.setItem('menu_list', JSON.stringify(data))
+  console.log(data, code, message)
+}
+
+if(localStorage.getItem('menu_list') && localStorage.getItem('ms_title') === $title ) {
+  menuList.value = JSON.parse(localStorage.getItem('menu_list') as string)
+} else {
+  getMenuData()
+}
+
 // 监听浏览器mq的改变应该是
 userStore.mq.addEventListener('change', userStore.handleResize)
 // 改变大小
 userStore.handleResize()
 
-
-onUnmounted(() => {
-  userStore.mq.removeEventListener('change', userStore.handleResize)
-})
-
 tagsStore.getTagsListItem({
-  title: route.meta.title, 
-  name: route.meta.title, 
-  path: route.fullPath, 
+  title: route.meta.title,
+  name: route.meta.title,
+  path: route.fullPath,
   closeBoldIconShow: false
 })
 tagsStore.currentPath = route.fullPath
@@ -50,6 +66,10 @@ onBeforeRouteUpdate((to, form) => {
   console.log(tagsStore.tagsPath)
 })
 
+onUnmounted(() => {
+  userStore.mq.removeEventListener('change', userStore.handleResize)
+})
+
 </script>
 
 <template>
@@ -60,7 +80,7 @@ onBeforeRouteUpdate((to, form) => {
       </ElHeader>
       <ElContainer>
         <ElAside width="auto" style="background-color: var(--lor-blue);">
-          <SideBarView />
+          <SideBarView :menuList="menuList" />
         </ElAside>
 
         <ElMain>

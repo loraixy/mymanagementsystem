@@ -5,13 +5,35 @@ import { useRoute } from 'vue-router'
 import { useSideBarStore } from '../stores/sidebar'
 import { storeToRefs } from 'pinia'
 
+import type { IMenu } from '../typings/system'
+
 const route = useRoute()
 
 const store = useSideBarStore()
 
 const { isCollapse } = storeToRefs(store)
 
-// const menus = ref([])
+const { menuList } = defineProps<{
+    menuList: IMenu[]
+}>()
+
+const defaultMenu = computed(() => {
+    return menuList.map(item => ({
+        title: item.title,
+        index: item.id,
+        icon: 'CirclePlusFilled',
+        parent: item.parent
+    }))
+})
+
+const menus = computed(() => {
+    return defaultMenu.value.filter(item => item.parent === -999).map(item => ({
+        title: item.title,
+        index: item.index.toString(),
+        icon: 'CirclePlusFilled',
+        menuItems: menuList.filter(subItem => subItem.parent !== -999 && subItem.parent === item.index),
+    }))
+})
 
 const defaultActivePath = computed(() => {
     return route.path.substring(1, route.path.length)
@@ -25,7 +47,7 @@ const defaultActivePath = computed(() => {
         <ElSubMenu index="1">
             <template #title>
                 <ElIcon :size="20" color="#409EFC">
-                    <IEpLocation />
+                    <Location />
                 </ElIcon>
                 <span class=" overflow-hidden whitespace-nowrap text-ellipsis ">Navigator hhhhhhhhhhhhhhh</span>
             </template>
@@ -34,7 +56,7 @@ const defaultActivePath = computed(() => {
         <ElSubMenu index="2">
             <template #title>
                 <ElIcon :size="20" color="#409EFC">
-                    <IEpLocation />
+                    <Location />
                 </ElIcon>
                 <span>Navigator One</span>
             </template>
@@ -44,7 +66,7 @@ const defaultActivePath = computed(() => {
         <ElSubMenu index="3">
             <template #title>
                 <ElIcon :size="20" color="#409EFC">
-                    <IEpCirclePlusFilled />
+                    <CirclePlusFilled />
                 </ElIcon>
                 <span>Navigator One two</span>
             </template>
@@ -53,17 +75,17 @@ const defaultActivePath = computed(() => {
                 <ElMenuItem disabled index="home">item two</ElMenuItem>
             </ElMenuItemGroup>
         </ElSubMenu>
-        <!-- <ElSubMenu v-for="(item) in menus" :key="item.path" :index="item.id">
+        <ElSubMenu v-for="(item) in menus" :key="item.title" :index="item.index">
             <template #title>
                 <ElIcon :size="20" color="#409EFC">
-                    <IEpCirclePlusFilled />
+                    <component :is="`${item.icon}`" />
                 </ElIcon>
                 <span>{{ item.title }}</span>
             </template>
-            <ElMenuItem index="item-one" v-for="menuItem in item.menu" :key="menuItem.path">
+            <ElMenuItem index="item-one" v-for="menuItem in item.menuItems">
                 {{ menuItem.title }}
             </ElMenuItem>
-        </ElSubMenu> -->
+        </ElSubMenu>
     </ElMenu>
 </template>
 
