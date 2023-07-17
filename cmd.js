@@ -7,6 +7,8 @@ const path = require('path');
 
 const net = require('net');
 
+const fs = require('fs')
+
 // 这里还有一个问题，这个地方并不是自动检索的，所以还是要手动切换一次，有些人的电脑上的npm没有npm.cmd
 const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
 // const npmPath = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
@@ -155,6 +157,8 @@ function createServer(port, host) {
                 res.end('hello');
             });
         } else if (url == '/crete-file') {
+
+
             const options = {
                 hostname: '192.168.2.200',
                 port: 5000,
