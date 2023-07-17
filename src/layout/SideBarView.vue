@@ -59,7 +59,7 @@ const defaultActivePath = computed(() => {
                 </ElIcon>
                 <span class=" overflow-hidden whitespace-nowrap text-ellipsis ">Navigator hhhhhhhhhhhhhhh</span>
             </template>
-            <ElMenuItem index="virtual-list">虚拟列表</ElMenuItem>
+            <ElMenuItem index="/virtual-list">虚拟列表</ElMenuItem>
         </ElSubMenu>
         <ElSubMenu index="2">
             <template #title>
@@ -68,8 +68,8 @@ const defaultActivePath = computed(() => {
                 </ElIcon>
                 <span>Navigator One</span>
             </template>
-            <ElMenuItem index="item-one">item one</ElMenuItem>
-            <ElMenuItem index="item-two">item two</ElMenuItem>
+            <ElMenuItem index="/item-one">item one</ElMenuItem>
+            <ElMenuItem index="/navigator-one/item-two">item two</ElMenuItem>
         </ElSubMenu>
         <ElSubMenu index="3">
             <template #title>
@@ -78,8 +78,8 @@ const defaultActivePath = computed(() => {
                 </ElIcon>
                 <span>Navigator One two</span>
             </template>
-            <ElMenuItemGroup p title="Group One">
-                <ElMenuItem index="group-one">树形数据</ElMenuItem>
+            <ElMenuItemGroup title="Group One">
+                <ElMenuItem index="/group-one">树形数据</ElMenuItem>
                 <ElMenuItem disabled index="home">item two</ElMenuItem>
             </ElMenuItemGroup>
         </ElSubMenu>

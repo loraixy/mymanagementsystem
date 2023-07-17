@@ -50,7 +50,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('../views/pages/NavigatorOne/ItemOne/ItemOne.vue')
       },
       {
-        path: 'item-two',
+        path: 'navigator-one/item-two',
         name: 'ItemTwo',
         meta: {
           savePage: true,
@@ -58,7 +58,7 @@ const routes: RouteRecordRaw[] = [
           permiss: '1',
           isSave: false
         },
-        component: () => import('../views/pages/NavigatorOne/ItemTwo/ItemTwo.vue')
+        component: () => import('../views/pages/NavigatorOne/ItemTwo/index.vue')
       },
       {
         path: 'virtual-list',
