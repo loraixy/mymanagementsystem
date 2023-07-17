@@ -154,6 +154,35 @@ function createServer(port, host) {
             commandOutput(child).then(() => {
                 res.end('hello');
             });
+        } else if (url == '/crete-file') {
+            const options = {
+                hostname: '192.168.2.200',
+                port: 5000,
+                path: '/api/Myfromwork/GetMenus?t=1689578070608',
+                method: 'GET'
+            };
+
+            const request = http.request(options, (response) => {
+                let data = '';
+
+                response.on('data', (chunk) => {
+                    data += chunk;
+                });
+
+                response.on('end', () => {
+                    console.log(data); // 请求结果在这里处理
+                    res.writeHead(200, {
+                        'Content-Type': 'application/json' // 设置响应头
+                    });
+                    res.end(data);
+                });
+            });
+
+            request.on('error', (error) => {
+                console.error(error); // 处理请求错误
+            });
+
+            request.end('ok');
         } else {
             res.end('error')
         }
