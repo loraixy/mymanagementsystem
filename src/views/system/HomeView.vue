@@ -23,12 +23,16 @@ const { $title } = proxy as ComponentPublicInstance
 const menuList = ref<IMenu[]>([])
 
 const getMenuData = async (): Promise<void> => {
-  const { data: { data, code, message } } = await menu.getMenu()
-  menuList.value = data[0]
+  try {
+    const { data: { data, code, message } } = await menu.getMenu()
+    menuList.value = data[0]
 
-  localStorage.setItem('menu_list', JSON.stringify(data))
+    localStorage.setItem('menu_list', JSON.stringify(data))
 
-  console.log(menuList.value, code, message)
+    console.log(menuList.value, code, message)
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 if (localStorage.getItem('menu_list') && localStorage.getItem('ms_title') === $title) {

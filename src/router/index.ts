@@ -97,6 +97,10 @@ const routes: RouteRecordRaw[] = [
   },
 ]
 
+ const pages = import.meta.glob('../views/**/*.vue')
+
+ console.log('pages =>', pages)
+
 const router = createRouter({
   linkActiveClass: 'route-link-active',
   history: createWebHashHistory(import.meta.env.BASE_URL),
