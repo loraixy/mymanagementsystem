@@ -33,12 +33,16 @@ class Http {
 
             return config
         }, function (error) {
+            console.log('拦截错误 👇')
+            console.error(error)
             return Promise.reject(error)
         })
 
         this.instance.interceptors.response.use(function (response) {
             return response
         }, function (error) {
+            console.log('响应错误 👇')
+            console.error(error)
             return Promise.reject(error)
         })
     }

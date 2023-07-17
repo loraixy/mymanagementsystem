@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const bodyData = ref('')
 
@@ -7,6 +7,10 @@ fetch('https://apis.netstart.cn/zhihudaily/story/9741200').then(req => req.json(
     console.log('数据测试', res.story.body)
     bodyData.value = res.story.body
 
+})
+
+onMounted(() => {
+    console.log('onMounted')
 })
 
 </script>
