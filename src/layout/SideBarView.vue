@@ -13,16 +13,18 @@ const store = useSideBarStore()
 
 const { isCollapse } = storeToRefs(store)
 
-const { menuList } = defineProps<{
+const props = defineProps<{
     menuList: IMenu[]
 }>()
 
 const defaultMenu = computed(() => {
-    return menuList.map(item => ({
+
+    return props.menuList.map(item => ({
         title: item.title,
         index: item.id,
         icon: 'CirclePlusFilled',
-        parent: item.parent
+        parent: item.parent,
+        url: item.ulr
     }))
 })
 
@@ -31,7 +33,12 @@ const menus = computed(() => {
         title: item.title,
         index: item.index.toString(),
         icon: 'CirclePlusFilled',
-        menuItems: menuList.filter(subItem => subItem.parent !== -999 && subItem.parent === item.index),
+        menuItems: props.menuList.filter(subItem => subItem.parent !== -999 && subItem.parent === item.index).map(mapItem => ({
+            title: mapItem.title,
+            index: mapItem.ulr,
+            icon: 'CirclePlusFilled',
+            url: mapItem.ulr
+        })),
     }))
 })
 
@@ -82,7 +89,7 @@ const defaultActivePath = computed(() => {
                 </ElIcon>
                 <span>{{ item.title }}</span>
             </template>
-            <ElMenuItem index="item-one" v-for="menuItem in item.menuItems">
+            <ElMenuItem :index="menuItem.index" v-for="menuItem in item.menuItems">
                 {{ menuItem.title }}
             </ElMenuItem>
         </ElSubMenu>

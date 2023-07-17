@@ -8,6 +8,6 @@ export const menu = {
     * @return {Promise<any>} A promise that resolves with the menu data.
     */
     getMenu() {
-        return http.get<IMenu[]>('/api/Myfromwork/GetMenus')
+        return http.get<Array<IMenu[]>>('/api/Myfromwork/GetMenus')
     }
 }

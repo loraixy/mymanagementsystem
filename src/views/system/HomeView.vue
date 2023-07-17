@@ -24,15 +24,15 @@ const menuList = ref<IMenu[]>([])
 
 const getMenuData = async (): Promise<void> => {
   const { data: { data, code, message } } = await menu.getMenu()
-  menuList.value = data
+  menuList.value = data[0]
 
   localStorage.setItem('menu_list', JSON.stringify(data))
 
-  console.log(data, code, message)
+  console.log(menuList.value, code, message)
 }
 
 if (localStorage.getItem('menu_list') && localStorage.getItem('ms_title') === $title) {
-  menuList.value = JSON.parse(localStorage.getItem('menu_list') as string)
+  menuList.value = JSON.parse(localStorage.getItem('menu_list') as string)[0]
 } else {
   getMenuData()
 }
