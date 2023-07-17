@@ -22,7 +22,7 @@ const defaultMenu = computed(() => {
     return props.menuList.map(item => ({
         title: item.title,
         index: item.id,
-        icon: 'CirclePlusFilled',
+        icon: item.ico,
         parent: item.parent,
         url: item.ulr
     }))
@@ -32,11 +32,11 @@ const menus = computed(() => {
     return defaultMenu.value.filter(item => item.parent === -999).map(item => ({
         title: item.title,
         index: item.index.toString(),
-        icon: 'CirclePlusFilled',
+        icon: item.icon,
         menuItems: props.menuList.filter(subItem => subItem.parent !== -999 && subItem.parent === item.index).map(mapItem => ({
             title: mapItem.title,
             index: mapItem.ulr,
-            icon: 'CirclePlusFilled',
+            icon: mapItem.ico,
             url: mapItem.ulr
         })),
     }))
@@ -50,7 +50,8 @@ const defaultActivePath = computed(() => {
 
 <template>
     <!-- defaultActive 在设置router="true" 的时候自动根据当前路由路径来显示高亮 -->
-    <ElMenu class=" max-w-[13.125rem] " :collapse="isCollapse" :default-active="defaultActivePath" router>
+    <ElMenu class=" max-w-[13.125rem] w-[13.125rem] " :collapse="isCollapse" :default-active="defaultActivePath"
+        unique-opened router>
         <ElSubMenu index="1">
             <template #title>
                 <ElIcon :size="20" color="#409EFC">

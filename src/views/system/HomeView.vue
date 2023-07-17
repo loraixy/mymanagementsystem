@@ -85,8 +85,8 @@ onUnmounted(() => {
           <SideBarView :menuList="menuList" />
         </ElAside>
 
-        <ElMain>
-          <div>
+        <ElMain class=" bg-[--lor-main-bg-color] ">
+          <div class=" min-h-full ">
             <!-- 上面这个写法没有bug，下面的有很奇怪 -->
             <!-- <Transition name="move">
               <RouterView></RouterView>
@@ -109,6 +109,7 @@ onUnmounted(() => {
 <style lang="scss">
 .el-main {
   height: calc(100vh - 3rem);
+  --el-main-padding: 12px;
 }
 
 .content-main {

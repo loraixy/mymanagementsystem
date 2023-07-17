@@ -106,7 +106,9 @@ function createServer(port, host) {
         res.setHeader("Access-Control-Allow-Credentials", true);
 
         res.setHeader("Access-Control-Request-Method", "PUT,POST,GET,DELETE,OPTIONS");
+
         console.log(req.url)
+
         const url = req.url.split('?')[0]
         if (url === '/cmd') {
 

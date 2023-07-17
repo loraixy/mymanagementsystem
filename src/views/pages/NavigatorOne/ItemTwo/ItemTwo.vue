@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="dashboard">
+    <div class=" bg-white dashboard rounded-md p-2 ">
         <h1>This is an itemTwo page ITEMtWO</h1>
         <div v-html="bodyData"></div>
     </div>
