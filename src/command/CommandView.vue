@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import { 
+import {
     ref,
-    getCurrentInstance, 
-    ComponentInternalInstance, 
-    ComponentPublicInstance } from 'vue'
+    getCurrentInstance,
+    ComponentInternalInstance,
+    ComponentPublicInstance
+} from 'vue'
 
 const { proxy } = getCurrentInstance() as ComponentInternalInstance
 
@@ -23,9 +24,9 @@ const testFun = (): void => {
 
 const handleServeStr = (): void => {
     fetch(http + '/serve?serve=' + serveStr.value + '&cmd=' + cmdStr.value)
-    .then(req => req.json()).then(res => {
-        console.log('数据测试', res)
-    })
+        .then(req => req.json()).then(res => {
+            console.log('数据测试', res)
+        })
 }
 
 </script>

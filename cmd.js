@@ -8,8 +8,8 @@ const path = require('path');
 const net = require('net');
 
 // 这里还有一个问题，这个地方并不是自动检索的，所以还是要手动切换一次，有些人的电脑上的npm没有npm.cmd
-// const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
-const npmPath = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
+const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
+// const npmPath = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
 
 
 // spawn的配置选项
@@ -140,7 +140,7 @@ function createServer(port, host) {
             spawnOptions = {
                 ...spawnOptions,
                 env: {
-                    FORCE_COLOR: '1', 
+                    FORCE_COLOR: '1',
                     PORT: port,
                     VITE_PARENT_PORT: port,
                     VITE_PARENT_HOST: host,
@@ -192,7 +192,7 @@ function init(port, host) {
                 count++
                 if (count >= continuity) {
                     // 可用，执行启动新的父进程的代码
-                    createServer(port - 1, host)
+                    createServer(port, host)
                     console.log(`\u001b[32mavailable:\u001b[0m Port ${port} is available.`);
                     count = 0
                 } else {

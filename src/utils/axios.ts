@@ -48,9 +48,9 @@ class Http {
     }
 
     get<T>(url: string, params?: object): Promise<AxiosResponse<ResultData<T>>> {
-        return this.instance.get(url, {params});
+        return this.instance.get(url, { params });
     }
-    post<T>(url: string, params?: object): Promise<ResultData<T>> {
+    post<T>(url: string, params?: object): Promise<AxiosResponse<ResultData<T>>> {
         return this.instance.post(url, params);
     }
 }

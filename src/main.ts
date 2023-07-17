@@ -28,7 +28,7 @@ localStorage.setItem('ms_title', app.config.globalProperties.$title)
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
-}  
+}
 
 app.use(createPinia())
 app.use(router)
