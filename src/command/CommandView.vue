@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import {
-    ref,
-    getCurrentInstance,
+import { ref, getCurrentInstance } from 'vue'
+import type {
     ComponentInternalInstance,
     ComponentPublicInstance
 } from 'vue'

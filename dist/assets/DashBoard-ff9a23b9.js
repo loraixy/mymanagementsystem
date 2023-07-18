@@ -1,1 +1,0 @@
-import{d as e,c as s,o as a,a as o,_ as t}from"./index-31cb23c6.js";const _={class:"dashboard"},n=o("h1",null,"This is an dashboard page 我的桌面",-1),r=[n],c=e({__name:"DashBoard",setup(d){return(m,i)=>(a(),s("div",_,r))}});const h=t(c,[["__file","D:/codedata/Improveyourself/testCliDemo/Vue3/element-vue3/mymanagementsystem/src/views/system/DashBoard.vue"]]);export{h as default};

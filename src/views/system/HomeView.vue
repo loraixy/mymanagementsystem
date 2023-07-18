@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { onUnmounted, ref, getCurrentInstance, ComponentInternalInstance, ComponentPublicInstance } from 'vue'
+import { onUnmounted, ref, getCurrentInstance } from 'vue'
+
 import { RouterView, useRoute, onBeforeRouteUpdate } from 'vue-router'
 import { useSideBarStore } from '../../stores/sidebar'
 import { useTagsStore } from '../../stores/tags'
 import { menu } from '../../apis/MenuManagement'
+
 import type { IMenu } from '../../typings/system'
+import type { ComponentInternalInstance, ComponentPublicInstance } from 'vue'
 
 import HeaderView from '../../layout/HeaderView.vue'
 import SideBarView from '../../layout/SideBarView.vue'
