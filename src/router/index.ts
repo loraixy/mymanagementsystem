@@ -38,28 +38,28 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('../views/system/DashBoard.vue')
       },
-      {
-        path: 'item-one',
-        name: 'ItemOne',
-        meta: {
-          savePage: true,
-          title: 'itemone',
-          permiss: '1',
-          isSave: false
-        },
-        component: () => import('../views/pages/NavigatorOne/ItemOne/ItemOne.vue')
-      },
-      {
-        path: 'navigator-one/item-two',
-        name: 'ItemTwo',
-        meta: {
-          savePage: true,
-          title: 'itemTwo',
-          permiss: '1',
-          isSave: false
-        },
-        component: () => import('../views/pages/NavigatorOne/ItemTwo/index.vue')
-      },
+      // {
+      //   path: 'item-one',
+      //   name: 'ItemOne',
+      //   meta: {
+      //     savePage: true,
+      //     title: 'itemone',
+      //     permiss: '1',
+      //     isSave: false
+      //   },
+      //   component: () => import('../views/pages/NavigatorOne/ItemOne/index.vue')
+      // },
+      // {
+      //   path: 'navigator-one/item-two',
+      //   name: 'ItemTwo',
+      //   meta: {
+      //     savePage: true,
+      //     title: 'itemTwo',
+      //     permiss: '1',
+      //     isSave: false
+      //   },
+      //   component: () => import('../views/pages/NavigatorOne/ItemTwo/index.vue')
+      // },
       {
         path: 'virtual-list',
         name: 'HhhhView',
@@ -97,9 +97,53 @@ const routes: RouteRecordRaw[] = [
   },
 ]
 
- const pages = import.meta.glob('../views/**/*.vue')
 
- console.log('pages =>', pages)
+interface RouteMeta {
+  description: string;
+  // 是可选的
+  isAdmin?: boolean
+  // 每个路由都必须声明
+  requiresAuth?: boolean
+  savePage: boolean,
+  title: string,
+  permiss?: '1',
+  // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
+  isSave?: boolean
+  [key: string]: string | number | boolean | undefined | symbol | null
+
+}
+
+const pages = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })
+
+const pagesComps = import.meta.glob('../views/**/index.vue')
+
+const testRoute: RouteRecordRaw[] = Object.entries(pages).map(([path, meta]) => {
+  console.log(path, meta)
+  const pageJSPath = path
+  path = path.replace('../views', '').replace('/page.ts', '')
+  const comPath = pageJSPath.replace('page.ts', 'index.vue')
+  console.log('comPath =>', comPath)
+  return {
+    meta: meta as RouteMeta | undefined,
+    path,
+    name: path.split('/').filter(Boolean).join('-') || 'index',
+    component: pagesComps[comPath],
+    redirect: '/default-redirect-path',
+    children: []
+  }
+})
+
+
+routes.forEach(item => {
+  if (item.children) {
+    item.children = [
+      ...item.children,
+      ...testRoute
+    ]
+  }
+})
+
+console.log('pages =>', testRoute, pagesComps, routes)
 
 const router = createRouter({
   linkActiveClass: 'route-link-active',

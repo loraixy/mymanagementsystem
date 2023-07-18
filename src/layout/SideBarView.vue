@@ -68,8 +68,8 @@ const defaultActivePath = computed(() => {
                 </ElIcon>
                 <span>Navigator One</span>
             </template>
-            <ElMenuItem index="/item-one">item one</ElMenuItem>
-            <ElMenuItem index="/navigator-one/item-two">item two</ElMenuItem>
+            <ElMenuItem index="/pages/NavigatorOne/ItemOne">item one</ElMenuItem>
+            <ElMenuItem index="/pages/NavigatorOne/ItemTwo">item two</ElMenuItem>
         </ElSubMenu>
         <ElSubMenu index="3">
             <template #title>
