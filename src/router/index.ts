@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 import HomeView from '../views/system/HomeView.vue'
 import { nextTick } from 'vue'
 
@@ -96,22 +96,6 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/system/LoginView/LoginView.vue')
   },
 ]
-
-
-interface RouteMeta {
-  description: string;
-  // 是可选的
-  isAdmin?: boolean
-  // 每个路由都必须声明
-  requiresAuth?: boolean
-  savePage: boolean,
-  title: string,
-  permiss?: '1',
-  // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
-  isSave?: boolean
-  [key: string]: string | number | boolean | undefined | symbol | null
-
-}
 
 const pages = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })
 
