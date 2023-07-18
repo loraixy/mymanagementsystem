@@ -1,7 +1,7 @@
 <script setup lang="ts" >
 import { ref, computed, onMounted } from 'vue'
 // 医院报表数据类型接口
-import type { IHospitalList } from '../../../typings/hhhh'
+import type { IHospitalList } from '@/typings/hhhh'
 
 // 医院报表数据
 const hospitalList = ref<IHospitalList[]>([])
@@ -54,8 +54,6 @@ const test = {
         }
     }
 }
-
-// addEventListener()
 
 
 const getData = () => {
