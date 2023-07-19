@@ -30,6 +30,8 @@ export default defineConfig(({ mode }) => {
 
   console.log(`当前环境: ${VITE_APP_TITLE}`, VITE_API_BASE_URL, VITE_APP_TITLE, VITE_NODE_ENV)
 
+  // console.log(fileURLToPath(new URL('./src', import.meta.url)))
+
   return {
     base: './',
     plugins: [vue(), AutoImport({

@@ -38,40 +38,6 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('../views/system/DashBoard.vue')
       },
-      // {
-      //   path: 'item-one',
-      //   name: 'ItemOne',
-      //   meta: {
-      //     savePage: true,
-      //     title: 'itemone',
-      //     permiss: '1',
-      //     isSave: false
-      //   },
-      //   component: () => import('../views/pages/NavigatorOne/ItemOne/index.vue')
-      // },
-      // {
-      //   path: 'navigator-one/item-two',
-      //   name: 'ItemTwo',
-      //   meta: {
-      //     savePage: true,
-      //     title: 'itemTwo',
-      //     permiss: '1',
-      //     isSave: false
-      //   },
-      //   component: () => import('../views/pages/NavigatorOne/ItemTwo/index.vue')
-      // },
-      {
-        path: 'virtual-list',
-        name: 'HhhhView',
-        meta: {
-          savePage: true,
-          title: '虚拟列表',
-          permiss: '1',
-          // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
-          isSave: false
-        },
-        component: () => import('../views/pages/Navigatorhhhhh/HhhhView.vue')
-      },
       {
         path: 'group-one',
         name: 'GroupOne',
@@ -95,16 +61,18 @@ const routes: RouteRecordRaw[] = [
     },
     component: () => import('../views/system/LoginView/LoginView.vue')
   },
-]
+]   
 
-const pages = import.meta.glob('../views/**/page.ts', { eager: true, import: 'default' })
+const pages = import.meta.glob('../views/pages/**/page.ts', { eager: true, import: 'default' })
+
+console.log('pages =>',pages)
 
 const pagesComps = import.meta.glob('../views/**/index.vue')
-
+// Object.entries, 可以把一个数组对象拆成元组数组
 const testRoute: RouteRecordRaw[] = Object.entries(pages).map(([path, meta]) => {
   console.log(path, meta)
   const pageJSPath = path
-  path = path.replace('../views', '').replace('/page.ts', '')
+  path = path.replace('../views/pages', '').replace('/page.ts', '')
   const comPath = pageJSPath.replace('page.ts', 'index.vue')
   console.log('comPath =>', comPath)
   return {
@@ -112,11 +80,8 @@ const testRoute: RouteRecordRaw[] = Object.entries(pages).map(([path, meta]) => 
     path,
     name: path.split('/').filter(Boolean).join('-') || 'index',
     component: pagesComps[comPath],
-    redirect: '/default-redirect-path',
-    children: []
   }
 })
-
 
 routes.forEach(item => {
   if (item.children) {

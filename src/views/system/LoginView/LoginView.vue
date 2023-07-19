@@ -27,7 +27,7 @@ onMounted(() => {
                     <div class=" h-full w-1/2 bg-[--lor-blue] max-md:hidden ">
                         登录模块
                         <span class=" drop-shadow ">UserLogin</span>
-                        欢迎登录， Lor 后台管理系统
+                        欢迎登录， Lor 后台管理系统1
                     </div>
                 </main>
 

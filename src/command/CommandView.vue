@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import {
-    ref,
-    getCurrentInstance,
+import { ref, getCurrentInstance } from 'vue'
+import type {
     ComponentInternalInstance,
     ComponentPublicInstance
 } from 'vue'
@@ -16,10 +15,6 @@ const cmdStr = ref('')
 
 
 const serveStr = ref('')
-
-const test = ref('testsfsdfsdfsfd')
-
-
 
 const testFun = (): void => {
     fetch(http + '/cmd?cmd=' + 'yege').then(req => req.json()).then(res => {
@@ -41,6 +36,5 @@ const handleServeStr = (): void => {
         <ElInput v-model="cmdStr" placeholder="请输入命令" />
         <ElInput v-model="serveStr" placeholder="请输入地址" />
         <button @click="handleServeStr">{{ serveStr }}</button>
-        <div>{{ test }}</div>
     </div>
 </template>

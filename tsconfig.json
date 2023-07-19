@@ -8,6 +8,12 @@
       "DOM",
       "DOM.Iterable"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "skipLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "node",
@@ -34,7 +40,7 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue", "src/views/pages/Navigatorhhhhh/hhhview",
   ],
   "references": [
     {

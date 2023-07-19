@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { onUnmounted, ref, getCurrentInstance, ComponentInternalInstance, ComponentPublicInstance } from 'vue'
+import { onUnmounted, ref, getCurrentInstance } from 'vue'
+
 import { RouterView, useRoute, onBeforeRouteUpdate } from 'vue-router'
 import { useSideBarStore } from '../../stores/sidebar'
 import { useTagsStore } from '../../stores/tags'
 import { menu } from '../../apis/MenuManagement'
+
 import type { IMenu } from '../../typings/system'
+import type { ComponentInternalInstance, ComponentPublicInstance } from 'vue'
 
 import HeaderView from '../../layout/HeaderView.vue'
 import SideBarView from '../../layout/SideBarView.vue'
-
 
 const userStore = useSideBarStore()
 
@@ -48,7 +50,7 @@ userStore.handleResize()
 
 tagsStore.getTagsListItem({
   title: route.meta.title,
-  name: route.meta.title,
+  name: route.name as string,
   path: route.fullPath,
   closeBoldIconShow: false
 })
@@ -60,7 +62,7 @@ onBeforeRouteUpdate((to, form) => {
   const name = to.name as string
   tagsStore.currentPath = to.path
 
-  form.fullPath === '/dashboard' && tagsStore.getTagsListItem({ title: form.meta.title, name: form.meta.title, path: form.fullPath, closeBoldIconShow: false })
+  form.fullPath === '/dashboard' && tagsStore.getTagsListItem({ title: form.meta.title, name: form.name as string , path: form.fullPath, closeBoldIconShow: false })
 
   tagsStore.getTagsListItem({
     name,

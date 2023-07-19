@@ -14,11 +14,11 @@ if (import.meta.env.VITE_NODE_ENV === 'production') {
     baseUrl = '/api'
 }
 
-// fetch(baseUrl + '/zhihudaily/story/9741200').then(req => req.json()).then(res => {
-//     console.log('数据测试', res.story.image)
-//     title.value = res.story.title
-//     images.value = res.story.image
-// })
+fetch(baseUrl + '/zhihudaily/story/9741200').then(req => req.json()).then(res => {
+    console.log('数据测试', res.story.image)
+    title.value = res.story.title
+    images.value = res.story.image
+})
 
 const ageFn = (val: number): void => {
     age.value = val
