@@ -74,7 +74,7 @@ const handleCommand = (command: string) => {
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" >
 .header-logo-move-leave-from,
 .header-logo-move-enter-to {
     // flex: 1;

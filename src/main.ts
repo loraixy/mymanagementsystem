@@ -25,7 +25,6 @@ app.config.globalProperties.$parentPort = import.meta.env.VITE_PARENT_PORT // �
 app.config.globalProperties.$parentHost = import.meta.env.VITE_PARENT_HOST // 父进程域名
 app.config.globalProperties.$title = '后台管理系统' // 系统名称
 localStorage.setItem('ms_title', app.config.globalProperties.$title)
-
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
