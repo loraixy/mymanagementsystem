@@ -92,12 +92,5 @@ src/views/LoginView/components/LoginModel.vue:5:15 - error TS2614: Module '"elem
 ### 引入taiwindcss
 See [这个是百度的,vue3 + vite 配置taiwindcss](https://juejin.cn/post/7173549978580123656).
 
-### 引入setup语法糖可修改组件名称
-
-```sh
-
-npm i unplugin-vue-define-options -D
-
-```
 
 

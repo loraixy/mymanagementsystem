@@ -43,7 +43,8 @@ const menus = computed(() => {
 })
 
 const defaultActivePath = computed(() => {
-    return route.path.substring(1, route.path.length)
+    console.log('route.path =>', route.path.substring(1, route.path.length))
+    return route.path
 })
 
 </script>
@@ -67,7 +68,7 @@ const defaultActivePath = computed(() => {
                 <ElIcon :size="20" color="#409EFC">
                     <Location />
                 </ElIcon>
-                <span>Navigator One</span>
+                <span class=" overflow-hidden whitespace-nowrap text-ellipsis ">Navigator One</span>
             </template>
             <ElMenuItem index="/one/ItemOne">item one</ElMenuItem>
             <ElMenuItem index="/one/ItemTwo">item two</ElMenuItem>
@@ -77,7 +78,7 @@ const defaultActivePath = computed(() => {
                 <ElIcon :size="20" color="#409EFC">
                     <CirclePlusFilled />
                 </ElIcon>
-                <span>Navigator One two</span>
+                <span class=" overflow-hidden whitespace-nowrap text-ellipsis ">Navigator One two</span>
             </template>
             <ElMenuItemGroup title="Group One">
                 <ElMenuItem index="/onetwo/onetwo">树形数据</ElMenuItem>

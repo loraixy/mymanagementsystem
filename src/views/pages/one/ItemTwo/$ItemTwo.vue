@@ -4,9 +4,8 @@ import { ref, onMounted } from 'vue'
 const bodyData = ref('')
 
 fetch('https://apis.netstart.cn/zhihudaily/story/9741200').then(req => req.json()).then(res => {
-    console.log('数据测试', res.story.body)
+    // console.log('数据测试', res.story.body)
     bodyData.value = res.story.body
-
 })
 
 onMounted(() => {

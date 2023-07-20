@@ -66,7 +66,7 @@ function isPortAvailable(port, host) {
 /**
  * 输出模式，和样式
  * @param {cp.ChildProcess} child 
- * @returns {Promise<void>}
+ * @returns {Promise<unknown>}
  */
 function commandOutput(child) {
     return new Promise((resolve, reject) => {

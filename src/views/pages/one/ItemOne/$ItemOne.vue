@@ -6,19 +6,19 @@ const title = ref('')
 const images = ref('')
 const age = ref(12)
 
-let baseUrl: string = ''
+// let baseUrl: string = ''
 
-if (import.meta.env.VITE_NODE_ENV === 'production') {
-    baseUrl = import.meta.env.VITE_API_BASE_URL
-} else {
-    baseUrl = '/api'
-}
+// if (import.meta.env.VITE_NODE_ENV === 'production') {
+//     baseUrl = import.meta.env.VITE_API_BASE_URL
+// } else {
+//     baseUrl = '/api'
+// }
 
-fetch(baseUrl + '/zhihudaily/story/9741200').then(req => req.json()).then(res => {
-    console.log('数据测试', res.story.image)
-    title.value = res.story.title
-    images.value = res.story.image
-})
+// fetch(baseUrl + '/zhihudaily/story/9741200').then(req => req.json()).then(res => {
+//     console.log('数据测试', res.story.image)
+//     title.value = res.story.title
+//     images.value = res.story.image
+// })
 
 const ageFn = (val: number): void => {
     age.value = val
