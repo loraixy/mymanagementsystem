@@ -48,7 +48,7 @@ const routes: RouteRecordRaw[] = [
           // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
           isSave: false
         },
-        component: () => import('../views/pages/NavigatorOnetwo/GroupOne.vue')
+        component: () => import('../views/pages/NavigatorOnetwo/_GroupOne.vue')
       }
     ]
   },
@@ -67,14 +67,15 @@ const pages = import.meta.glob('../views/pages/**/page.ts', { eager: true, impor
 
 console.log('pages =>',pages)
 
-const pagesComps = import.meta.glob('../views/**/index.vue')
+const pagesComps = import.meta.glob('../views/pages/**/_**.vue')
+console.log('pagesComps =>',pagesComps)
 // Object.entries, 可以把一个数组对象拆成元组数组
 const testRoute: RouteRecordRaw[] = Object.entries(pages).map(([path, meta]) => {
   console.log(path, meta)
   const pageJSPath = path
   path = path.replace('../views/pages', '').replace('/page.ts', '')
   const comPath = pageJSPath.replace('page.ts', 'index.vue')
-  console.log('comPath =>', comPath)
+  // console.log('comPath =>', comPath)
   return {
     meta: meta as RouteMeta | undefined,
     path,
