@@ -40,7 +40,8 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue", "src/views/pages/Navigatorhhhhh/hhhview",
+    "src/**/*.vue",
+    "plugins/**/*.ts",
   ],
   "references": [
     {

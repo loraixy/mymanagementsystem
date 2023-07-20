@@ -38,18 +38,18 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('../views/system/DashBoard.vue')
       },
-      {
-        path: 'group-one',
-        name: 'GroupOne',
-        meta: {
-          savePage: true,
-          title: '树形数据',
-          permiss: '1',
-          // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
-          isSave: false
-        },
-        component: () => import('../views/pages/NavigatorOnetwo/_GroupOne.vue')
-      }
+      // {
+      //   path: 'group-one',
+      //   name: 'GroupOne',
+      //   meta: {
+      //     savePage: true,
+      //     title: '树形数据',
+      //     permiss: '1',
+      //     // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
+      //     isSave: false
+      //   },
+      //   component: () => import('../views/pages/NavigatorOnetwo/index.vue')
+      // }
     ]
   },
   {
@@ -61,21 +61,21 @@ const routes: RouteRecordRaw[] = [
     },
     component: () => import('../views/system/LoginView/LoginView.vue')
   },
-]   
+]
 
 const pages = import.meta.glob('../views/pages/**/page.ts', { eager: true, import: 'default' })
 
-console.log('pages =>',pages)
+console.log('pages =>', pages)
 
-const pagesComps = import.meta.glob('../views/pages/**/_**.vue')
-console.log('pagesComps =>',pagesComps)
+const pagesComps = import.meta.glob('../views/pages/**/index.vue')
+console.log('pagesComps =>', pagesComps)
 // Object.entries, 可以把一个数组对象拆成元组数组
 const testRoute: RouteRecordRaw[] = Object.entries(pages).map(([path, meta]) => {
   console.log(path, meta)
   const pageJSPath = path
   path = path.replace('../views/pages', '').replace('/page.ts', '')
   const comPath = pageJSPath.replace('page.ts', 'index.vue')
-  // console.log('comPath =>', comPath)
+  console.log('comPath =>', comPath)
   return {
     meta: meta as RouteMeta | undefined,
     path,

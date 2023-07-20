@@ -81,9 +81,9 @@ const moneyData = ref([{
 
 class Obj {
     #sss = '0'
-    sb= 'sb'
+    sb = 'sb'
     constructor() {
-       
+
         this.privateFun(this.#sss)
     }
     /**
@@ -95,9 +95,9 @@ class Obj {
         console.log(str + 'woshishui')
     }
 
-    private privateFun(str: string): {name: string} {
+    private privateFun(str: string): { name: string } {
         console.log('我是谁' + str)
-        return new Proxy({name: 'sss'}, {})
+        return new Proxy({ name: 'sss' }, {})
     }
 }
 
@@ -107,7 +107,7 @@ console.log(s.sayhello('牛牛'))
 
 // 实收金额
 const totalIncome = computed({
-    
+
     get() {
         return moneyData.value[2].money
     },
@@ -115,7 +115,7 @@ const totalIncome = computed({
     set(val) {
         moneyData.value[2].money = val
     }
-    
+
 })
 // 总价
 const totalPrice = computed(() =>
@@ -151,7 +151,9 @@ const total = ref(128.5)
             <div class=" w-full " v-for="item in moneyData" :key="item.type">
                 <ElInput v-model.number="item.money" />
             </div>
-            <div>实收: <ElInput v-model.number="totalIncome" /></div>
+            <div>实收:
+                <ElInput v-model.number="totalIncome" />
+            </div>
             找补
             <div class=" w-full ">
                 <ElInput v-model.number="makeUpFor" />

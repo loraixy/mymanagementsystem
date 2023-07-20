@@ -3,8 +3,12 @@ import { fileURLToPath, URL } from 'node:url'
 // 引入path处理文件路径
 import path from 'path'
 
+// import DefineOptions from 'unplugin-vue-define-options/vite'
+import setupName from './plugin/src/index'
+
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+
 
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -34,13 +38,16 @@ export default defineConfig(({ mode }) => {
 
   return {
     base: './',
-    plugins: [vue(), AutoImport({
-      resolvers: [ElementPlusResolver(), IconResolver({ prefix: 'Icon' })],
-    }),
-    Components({
-      resolvers: [ElementPlusResolver(), IconResolver({ enabledCollections: ['ep'] })],
-    }),
-    Icons({ autoInstall: true })],
+    plugins: [
+      vue(),
+      AutoImport({
+        resolvers: [ElementPlusResolver(), IconResolver({ prefix: 'Icon' })],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver(), IconResolver({ enabledCollections: ['ep'] })],
+      }),
+      Icons({ autoInstall: true }),
+      setupName()],
     css: {
       postcss: {
         plugins: [require('tailwindcss'), require('autoprefixer')]
@@ -53,7 +60,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       hmr: true,
-      usePolling:true,
+      usePolling: true,
       proxy: {
         '/api': { // 匹配请求路径，代理的地址
           target: VITE_API_BASE_URL, // 代理的目标地址

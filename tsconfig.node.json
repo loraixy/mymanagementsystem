@@ -1,7 +1,7 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
   "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", 
-  "playwright.config.*", "tailwind.config.*","components.*","auto-imports.*", "senv.d.*", "cmd.js"],
+  "playwright.config.*", "tailwind.config.*","components.*","auto-imports.*", "senv.d.*", "cmd.js","plugin/**/*.ts"],
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",

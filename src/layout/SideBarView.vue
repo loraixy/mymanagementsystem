@@ -80,7 +80,7 @@ const defaultActivePath = computed(() => {
                 <span>Navigator One two</span>
             </template>
             <ElMenuItemGroup title="Group One">
-                <ElMenuItem index="/group-one">树形数据</ElMenuItem>
+                <ElMenuItem index="/NavigatorOnetwo/NavigatorOnetwo">树形数据</ElMenuItem>
                 <ElMenuItem disabled index="home">item two</ElMenuItem>
             </ElMenuItemGroup>
         </ElSubMenu>
