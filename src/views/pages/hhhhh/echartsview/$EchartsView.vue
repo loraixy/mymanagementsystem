@@ -19,13 +19,14 @@ const downloadHTML = () => {
 }
 
 
-downloadHTML();
+
 </script>
 
 <template>
     <div>
         我是echarts
 
-        <div>{{ num1 }}</div>
+        <div class=" hidden " >{{ num1 }}</div>
+        <div @click="downloadHTML"></div>
     </div>
 </template>

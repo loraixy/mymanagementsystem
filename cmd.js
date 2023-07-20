@@ -8,11 +8,11 @@ const path = require('path');
 
 const net = require('net');
 
-const fs = require('fs')
+const fs = require('fs');
 
 // 这里还有一个问题，这个地方并不是自动检索的，所以还是要手动切换一次，有些人的电脑上的npm没有npm.cmd
-const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
-// const npmPath = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
+// const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
+const npmPath = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
 
 // spawn的配置选项
 let spawnOptions = {
@@ -112,6 +112,7 @@ function createServer(port, host) {
         console.log(req.url)
 
         const url = req.url.split('?')[0]
+
         if (url === '/cmd') {
 
             console.log(child.pid);
@@ -138,8 +139,21 @@ function createServer(port, host) {
                 server: ''
             };
 
-            req.url.split('?')[1]('&')
+            const queryStr = req.url.split('?')[1].split('&')
 
+            const cmdStrArr = {}
+            queryStr.forEach(item => {
+                const key = item.split('=')[0];
+                const value = item.split('=')[1];
+
+                cmdStrArr[key] = value;
+            })
+
+            query = {
+                ...query,
+                ...cmdStrArr
+            }
+            // custom
             console.log('query =>', query);
             spawnOptions = {
                 ...spawnOptions,
@@ -148,7 +162,7 @@ function createServer(port, host) {
                     PORT: port,
                     VITE_PARENT_PORT: port,
                     VITE_PARENT_HOST: host,
-                    VITE_API_BASE_URL: baseUrl
+                    VITE_API_BASE_URL: 'http://127.0.0.1:' + port
                 },
             };
             child = cp.spawn(npmPath, ['run', query.cmd], spawnOptions);
@@ -198,7 +212,7 @@ function createServer(port, host) {
         console.log(app.address())
         console.log('create server at', '\x1b[34;1m', `${host}:\u001b[36m${app.address().port}\u001b[0m`, '\x1b[0m');
 
-        console.log('cmd.js NODE_ENV =>', process.env.NODE_ENV, process.env.VITE_PORT);
+        console.log('cmd.js NODE_ENV =>', process.env.NODE_ENV);
 
         spawnOptions = {
             ...spawnOptions,
@@ -228,6 +242,7 @@ function init(port, host) {
                 if (count >= continuity) {
                     // 可用，执行启动新的父进程的代码
                     createServer(port, host)
+                    //  ANSI 转义码 把终端输出的颜色做更改
                     console.log(`\u001b[32mavailable:\u001b[0m Port ${port} is available.`);
                     count = 0
                 } else {
