@@ -28,11 +28,11 @@ const multiplicationNun = computed(() => {
 // 判断几位小数
 const countDecimalPlaces = (num: number | string): number => {
     // 判断是否有.没有的话就直接返回0， 就是没有小数
-    let decimaIndex: number = num.toString().indexOf('.')
+    let decimalIndex: number = num.toString().indexOf('.')
 
-    if (decimaIndex === -1) return 0
+    if (decimalIndex === -1) return 0
     // 这边直接在.的位置到末尾的字符串，然后返回该字符串长度就能得到该小数有几位了
-    return num.toString().substring(decimaIndex + 1, num.toString().length).length
+    return num.toString().substring(decimalIndex + 1, num.toString().length).length
 }
 // 获取数据
 fetch('treeData.json').then(req => req.json()).then(res => {
@@ -40,19 +40,19 @@ fetch('treeData.json').then(req => req.json()).then(res => {
 
     console.log('treeData =>', treeData.value)
     // 调用函数，添加新字段
-    addGourpNumToSqdMxList(treeData.value, 'groupNum');
+    addGourdNumToSqdMxList(treeData.value, 'groupNum');
     console.log(treeData.value);
 
 })
 
 // 递归函数
-function addGourpNumToSqdMxList(treeData: any, gourpNumField: any) {
+function addGourdNumToSqdMxList(treeData: any, gourpNumField: any) {
     for (let i = 0; i < treeData.length; i++) {
         for (const key in treeData[i]) {
             const current = treeData[i][key];
             if (Array.isArray(current)) {
                 // 递归调用
-                addGourpNumToSqdMxList(current, gourpNumField);
+                addGourdNumToSqdMxList(current, gourpNumField);
             } else if (treeData[i].SqdMxList) {
                 // 添加新字段
                 treeData[i].SqdMxList = treeData[i].SqdMxList.map((item: any, index: any) => ({
@@ -87,12 +87,12 @@ class Obj {
         this.privateFun(this.#sss)
     }
     /**
-     * sayhello
+     * sayHello
      * @author lor
      * @param str 字符
      */
-    public sayhello(str: string): void {
-        console.log(str + 'woshishui')
+    public sayHello(str: string): void {
+        console.log(str + 'who')
     }
 
     private privateFun(str: string): { name: string } {
@@ -103,7 +103,7 @@ class Obj {
 
 const s = new Obj()
 
-console.log(s.sayhello('牛牛'))
+console.log(s.sayHello('牛牛'))
 
 // 实收金额
 const totalIncome = computed({

@@ -7,6 +7,7 @@
     "pro": "vite --mode production",
     "test": "vite --mode test",
     "yege": "vite --mode yege",
+    "custom": "vite",
     "build": "run-p type-check build-only",
     "start": "set NODE_ENV=development&&node cmd.js",
     "preview": "vite preview",

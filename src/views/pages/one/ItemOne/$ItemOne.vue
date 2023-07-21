@@ -33,7 +33,7 @@ const s = toRaw(testData)
 <template>
     <div class="item-one overflow-y-auto ">
         <ItemOneHeader :age="age" @age-fn="ageFn"></ItemOneHeader>
-        <h1>This is an dashboard page tIEMone</h1>
+        <h1>This is an dashboard page tIEM one</h1>
         <h2>{{ title }}</h2>
         {{ s }}
         <img :src="images" alt="这是一张图片">

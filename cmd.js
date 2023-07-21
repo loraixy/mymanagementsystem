@@ -11,8 +11,8 @@ const net = require('net');
 const fs = require('fs');
 
 // 这里还有一个问题，这个地方并不是自动检索的，所以还是要手动切换一次，有些人的电脑上的npm没有npm.cmd
-// const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
-const npmPath = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
+const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
+// const npmPath = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
 
 // spawn的配置选项
 let spawnOptions = {
@@ -31,10 +31,6 @@ const config = {
 };
 // spwan返回值
 let child = null;
-// 记录当前连续的未使用端口数量
-let count = 0;
-// 最大连续未被使用端口数量
-let continuity = 1;
 
 /**
  * 检测端口占用情况
@@ -115,7 +111,7 @@ function createServer(port, host) {
 
         if (url === '/cmd') {
 
-            console.log(child.pid);
+            console.log(child.pid, process.env.VITE_API_BASE_URL);
 
             // 要终止的进程ID
             const processId = child.pid;
@@ -136,7 +132,7 @@ function createServer(port, host) {
 
             let query = {
                 cmd: 'dev',
-                server: ''
+                serve: ''
             };
 
             const queryStr = req.url.split('?')[1].split('&')
@@ -162,13 +158,19 @@ function createServer(port, host) {
                     PORT: port,
                     VITE_PARENT_PORT: port,
                     VITE_PARENT_HOST: host,
-                    VITE_API_BASE_URL: 'http://127.0.0.1:' + port
+                    ...(query.serve && query.cmd === 'custom' ?
+                        {
+                            VITE_API_BASE_URL: query.serve,
+                            VITE_NODE_ENV: 'custom',
+                            VITE_APP_TITLE: 'custom'
+                        } : {}),
                 },
             };
             child = cp.spawn(npmPath, ['run', query.cmd], spawnOptions);
 
             commandOutput(child).then(() => {
                 res.end('hello');
+
             });
         } else if (url == '/crete-file') {
 
@@ -238,18 +240,11 @@ function init(port, host) {
     isPortAvailable(port, host)
         .then((available) => {
             if (available) {
-                count++
-                if (count >= continuity) {
-                    // 可用，执行启动新的父进程的代码
-                    createServer(port, host)
-                    //  ANSI 转义码 把终端输出的颜色做更改
-                    console.log(`\u001b[32mavailable:\u001b[0m Port ${port} is available.`);
-                    count = 0
-                } else {
-                    // 不可用，端口已被占用
-                    init(port + 1, host);
-                    console.log(`\u001b[32mavailable:\u001b[0m Port ${port} is available.`);
-                }
+
+                //  ANSI 转义码 把终端输出的颜色做更改
+                console.log(`\u001b[32mavailable:\u001b[0m Port ${port} is available.`);
+                // 可用，执行启动新的父进程的代码
+                createServer(port, host)
 
             } else {
                 // 不可用，端口已被占用

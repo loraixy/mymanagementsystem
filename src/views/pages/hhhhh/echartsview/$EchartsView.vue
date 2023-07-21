@@ -4,6 +4,12 @@ console.log('我是echarts');
 
 const num1 = ref(0);
 
+/**
+ * ! 不正确
+ * ? 功能是否合理
+ * TODO: 后续需要优化
+ * @param {number} num
+ */
 const downloadHTML = () => {
     const data = "<html><body><h1>Hello, World!</h1></body></html>"; // 替换为您要转换为HTML的数据
 
@@ -25,8 +31,15 @@ const downloadHTML = () => {
 <template>
     <div>
         我是echarts
-
-        <div class=" hidden " >{{ num1 }}</div>
+        <h3 class="test">我是echarts</h3>
+        <div class=" hidden ">{{ num1 }}</div>
         <div @click="downloadHTML"></div>
     </div>
 </template>
+
+
+<style>
+.test {
+    background-color: red;
+}
+</style>
