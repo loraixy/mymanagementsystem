@@ -184,7 +184,6 @@ function createServer(port, host) {
 
             const request = http.request(options, (response) => {
                 let data = '';
-
                 response.on('data', (chunk) => {
                     data += chunk;
                 });
