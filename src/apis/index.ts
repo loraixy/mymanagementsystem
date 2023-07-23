@@ -5,4 +5,4 @@ export const request = {
     getTest() {
         return http.get('/test')
     }
-}
+}  
