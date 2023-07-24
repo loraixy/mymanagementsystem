@@ -49,6 +49,7 @@ const defaultActivePath = computed(() => {
     return route.path
 })
 
+
 console.log('router', router.options.routes[0].children)
 
 
