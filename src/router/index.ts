@@ -11,7 +11,7 @@ declare module 'vue-router' {
     requiresAuth?: boolean
     savePage: boolean,
     title: string,
-    permiss?: '1',
+    premiss?: '1',
     // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
     isSave?: boolean
   }
@@ -33,7 +33,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           savePage: true,
           title: '系统首页',
-          permiss: '1',
+          premiss: '1',
           isSave: false
         },
         component: () => import('../views/system/DashBoard.vue')
@@ -53,18 +53,24 @@ const routes: RouteRecordRaw[] = [
 
 const pages = import.meta.glob('../views/pages/**/page.ts', { eager: true, import: 'default' })
 
-// console.log('pages =>', pages)
+// console.log('pages =>', pages)import.meta.glob('../views/pages/*/[^/]*.vue')
+
+console.log('vueFile => ', import.meta.glob('../views/pages/*/*/[^/]*.vue'))
+
+
 
 function generatePathConfig(): Record<string, any> {
   // 扫描 src/pages 下的所有具有路由文件
-  const modules = import.meta.glob('../views/pages/**/$*.vue');
+  const modules = import.meta.glob('../views/pages/*/*/[^/]*.vue');
 
   const pathConfig = {} as {
     [key: string]: () => Promise<unknown>
   };
   Object.keys(modules).forEach((filePath) => {
+
     const routePath = filePath
-      .split('$')[0]
+      .split(filePath.split('/').pop() as string)[0]
+
     pathConfig[routePath] = modules[filePath];
   });
   return pathConfig;

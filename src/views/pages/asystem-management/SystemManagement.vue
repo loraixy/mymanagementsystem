@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-
+console.log("sdfsdf")
 </script>
 <template>
     <div>
