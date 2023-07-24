@@ -137,7 +137,7 @@ onUnmounted(() => {
 
 .move-enter-active,
 .move-leave-active {
-  transition: opacity .1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: opacity .12s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .move-enter-from,
