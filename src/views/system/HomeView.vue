@@ -87,7 +87,7 @@ onUnmounted(() => {
         <HeaderView />
       </ElHeader>
       <ElContainer>
-        <ElAside width="auto" style="background-color: var(--lor-blue);">
+        <ElAside class=" aside h-screen " width="auto" style="background-color: var(--lor-blue);">
           <SideBarView :menuList="menuList" />
         </ElAside>
 
@@ -118,6 +118,10 @@ onUnmounted(() => {
   --el-main-padding: 12px;
 }
 
+.aside::-webkit-scrollbar {
+  width: 0;
+}
+
 .content-main {
   display: flex;
 }
@@ -133,7 +137,7 @@ onUnmounted(() => {
 
 .move-enter-active,
 .move-leave-active {
-  transition: opacity .2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: opacity .1s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .move-enter-from,
