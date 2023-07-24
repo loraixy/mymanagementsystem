@@ -24,6 +24,7 @@ class Http {
     constructor(option: AxiosRequestConfig) {
         this.config = option
         this.instance = axios.create(this.config)
+        this.interceptors()
     }
 
     interceptors() {
@@ -48,7 +49,7 @@ class Http {
         })
     }
 
-    request<T>(config: AxiosRequestConfig): Promise<AxiosResponse<T, any>> {
+    request<T>(config: AxiosRequestConfig): Promise<AxiosResponse<ResultData<T>, any>> {
         return this.instance.request(config)
     }
 
