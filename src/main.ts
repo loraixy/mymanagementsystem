@@ -1,7 +1,8 @@
 import './assets/main.css'
 import './tailwind.css'
 
-import { createApp } from 'vue'
+import { createApp }  from 'vue'
+
 import { createPinia } from 'pinia'
 
 
@@ -20,6 +21,7 @@ declare module '@vue/runtime-core' {
         $title: string
     }
 }
+
 
 app.config.globalProperties.$parentPort = import.meta.env.VITE_PARENT_PORT // 父进程端口
 app.config.globalProperties.$parentHost = import.meta.env.VITE_PARENT_HOST // 父进程域名
