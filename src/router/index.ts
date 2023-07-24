@@ -1,4 +1,3 @@
-import { menu } from './../apis/MenuManagement';
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 import HomeView from '../views/system/HomeView.vue'
@@ -57,7 +56,7 @@ const pages = import.meta.glob('../views/pages/**/page.ts', { eager: true, impor
 
 // console.log('pages =>', pages)
 
-console.log('vueFile => ', import.meta.glob('../views/pages/*/*/[^/]*.vue'))
+// console.log('vueFile => ', import.meta.glob('../views/pages/*/*/[^/]*.vue'))
 
 
 

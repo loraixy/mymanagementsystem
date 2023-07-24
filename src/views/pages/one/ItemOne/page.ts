@@ -3,4 +3,5 @@ export default {
     isSave: false,
     savePage: true,
     menu: 'Navigation ItemOne',
+    icon: ''
 }
