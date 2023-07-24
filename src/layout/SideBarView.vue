@@ -44,11 +44,7 @@ const menus = computed(() => {
     }))
 })
 
-const defaultActivePath = computed(() => {
-    console.log('route.path =>', route.path.substring(1, route.path.length))
-    return route.path
-})
-
+const defaultActivePath = computed(() => route.path)
 
 console.log('router', router.options.routes[0].children)
 

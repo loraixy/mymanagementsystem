@@ -58,8 +58,6 @@ const pages = import.meta.glob('../views/pages/**/page.ts', { eager: true, impor
 
 // console.log('vueFile => ', import.meta.glob('../views/pages/*/*/[^/]*.vue'))
 
-
-
 function generatePathConfig(): Record<string, any> {
   // 扫描 src/pages 下的所有具有路由文件
   const modules = import.meta.glob('../views/pages/*/*/[^/]*.vue');
