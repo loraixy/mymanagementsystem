@@ -56,13 +56,13 @@ tagsStore.getTagsListItem({
 })
 tagsStore.currentPath = route.fullPath
 onBeforeRouteUpdate((to, form) => {
-  console.log('from failure =>', to.meta.title, to.meta.permiss, to.fullPath)
+  console.log('from failure =>', to.meta.title, to.meta.premiss, to.fullPath)
   if (!to.meta.savePage || !form.meta.savePage) return
 
   const name = to.name as string
   tagsStore.currentPath = to.path
 
-  form.fullPath === '/dashboard' && tagsStore.getTagsListItem({ title: form.meta.title, name: form.name as string , path: form.fullPath, closeBoldIconShow: false })
+  form.fullPath === '/dashboard' && tagsStore.getTagsListItem({ title: form.meta.title, name: form.name as string, path: form.fullPath, closeBoldIconShow: false })
 
   tagsStore.getTagsListItem({
     name,

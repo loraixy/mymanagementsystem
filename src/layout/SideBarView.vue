@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import { useSideBarStore } from '../stores/sidebar'
 import { storeToRefs } from 'pinia'
@@ -8,6 +8,8 @@ import { storeToRefs } from 'pinia'
 import type { IMenu } from '../typings/system'
 
 const route = useRoute()
+
+const router = useRouter()
 
 const store = useSideBarStore()
 
@@ -46,6 +48,9 @@ const defaultActivePath = computed(() => {
     console.log('route.path =>', route.path.substring(1, route.path.length))
     return route.path
 })
+
+console.log('router', router.options.routes[0].children)
+
 
 </script>
 

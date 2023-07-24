@@ -1,3 +1,4 @@
+import { menu } from './../apis/MenuManagement';
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 import HomeView from '../views/system/HomeView.vue'
@@ -13,7 +14,8 @@ declare module 'vue-router' {
     title: string,
     premiss?: '1',
     // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
-    isSave?: boolean
+    isSave?: boolean,
+    menu?: string
   }
 }
 
@@ -53,7 +55,7 @@ const routes: RouteRecordRaw[] = [
 
 const pages = import.meta.glob('../views/pages/**/page.ts', { eager: true, import: 'default' })
 
-// console.log('pages =>', pages)import.meta.glob('../views/pages/*/[^/]*.vue')
+// console.log('pages =>', pages)
 
 console.log('vueFile => ', import.meta.glob('../views/pages/*/*/[^/]*.vue'))
 
