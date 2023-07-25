@@ -2,12 +2,13 @@ import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
 
 interface Result {
-    code: number;
+    code: number
     message: string
 }
 
 interface ResultData<T = any> extends Result {
-    data: T;
+    data: T
+    token?: string
 }
 
 /**

@@ -24,9 +24,22 @@ const { $title } = proxy as ComponentPublicInstance
 
 const menuList = ref<IMenu[]>([])
 
+let ss = ''
+
+let a: null | string = ''
+
+if (Math.random() > 0.5) {
+  a = null
+} else {
+  a = '1'
+}
+
+ss = a as string
+
 const getMenuData = async (): Promise<void> => {
   try {
     const { data: { data, code, message } } = await menu.getMenu()
+
     menuList.value = data[0]
 
     localStorage.setItem('menu_list', JSON.stringify(data))

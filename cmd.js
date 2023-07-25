@@ -21,16 +21,16 @@ const npmPath2 = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
 
 // 检查第一个路径是否存在
 if (fs.existsSync(npmPath1)) {
-  console.log('执行第一个路径上的操作');
-  npmPath = npmPath1;
-  // 执行第一个路径上的操作
+    console.log('执行第一个路径上的操作');
+    npmPath = npmPath1;
+    // 执行第一个路径上的操作
 } else if (fs.existsSync(npmPath2)) {
-  console.log('执行第二个路径上的操作');
-  npmPath = npmPath2;
-  // 执行第二个路径上的操作
+    console.log('执行第二个路径上的操作');
+    npmPath = npmPath2;
+    // 执行第二个路径上的操作
 } else {
-  console.log('两个路径都不存在，报错');
-  // 报错或执行其他操作
+    console.log('两个路径都不存在，报错');
+    // 报错或执行其他操作
 }
 
 // spawn的配置选项
@@ -197,7 +197,7 @@ function createServer(port, host) {
             const options = {
                 hostname: '192.168.2.200',
                 port: 5000,
-                path: '/api/Myfromwork/GetMenus?t=1689578070608',
+                path: '/api/Myfromwork/GetMenus',
                 method: 'GET'
             };
 
@@ -209,6 +209,34 @@ function createServer(port, host) {
 
                 response.on('end', () => {
                     console.log(data); // 请求结果在这里处理
+
+
+                    // 生成文件夹和文件
+                    const folderPath = path.resolve('src', 'views', 'pages', 'test', 'test');
+                    const filePathVue = path.resolve('src', 'views', 'pages', 'test', 'test', 'test.vue');
+                    const filePathMeta = path.resolve('src', 'views', 'pages', 'test', 'test', 'page.ts');
+
+                    const N = "\n";
+                    fs.mkdirSync(folderPath, { recursive: true });
+
+                    fs.writeFileSync(filePathVue,
+                        `<script lang="ts" setup name="test">
+                            console.log('test');
+                        </script>
+                        <template>
+                            <div>test</div>
+                        </template>`.replace(/^[^\S\r\n]+|[^\S\r\n]+$/gm, ''), { flag: 'w', encoding: 'utf-8' });
+
+                    fs.writeFileSync(filePathMeta,
+                        `export default {
+                            name: 'test',
+                            savePage: true,
+                            title: 'test',premiss: '1',
+                            // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
+                            isSave: false,
+                            menu: 'Navigation test'
+                        }`.replace(/^[^\S\r\n]+|[^\S\r\n]+$/gm, ''), { flag: 'w', encoding: 'utf-8' })
+
                     res.writeHead(200, {
                         'Content-Type': 'application/json' // 设置响应头
                     });
