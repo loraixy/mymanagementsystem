@@ -35,6 +35,7 @@ if (Math.random() > 0.5) {
 }
 
 ss = a as string
+console.log('sss' , ss)
 
 const getMenuData = async (): Promise<void> => {
   try {

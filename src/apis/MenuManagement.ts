@@ -9,5 +9,9 @@ export const menu = {
     */
     getMenu() {
         return http.get<Array<IMenu[]>>('/api/Myfromwork/GetMenus')
+    },
+
+    getRunningWater() {
+        return http.get('https://apis.netstart.cn/zhihudaily/stories/latest')
     }
 }

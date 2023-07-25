@@ -2,27 +2,59 @@
 import { ref, toRaw } from 'vue'
 
 import ItemOneHeader from './components/ItemOneHeader.vue';
+
+import {menu} from '@/apis/MenuManagement'
 const title = ref('')
 const images = ref('')
 const age = ref(12)
 
-// let baseUrl: string = ''
-
-// if (import.meta.env.VITE_NODE_ENV === 'production') {
-//     baseUrl = import.meta.env.VITE_API_BASE_URL
-// } else {
-//     baseUrl = '/api'
-// }
-
-// fetch(baseUrl + '/zhihudaily/story/9741200').then(req => req.json()).then(res => {
-//     console.log('数据测试', res.story.image)
-//     title.value = res.story.title
-//     images.value = res.story.image
-// })
-
 const ageFn = (val: number): void => {
     age.value = val
 }
+// https://apis.netstart.cn/zhihudaily/stories/latest
+
+const runningWater = () => {
+    // 向后端发送异步请求
+fetch('https://apis.netstart.cn/zhihudaily/stories/latest', {
+  method: 'GET',
+})
+  .then((response) => {
+    const reader = response.body?.getReader();
+
+    // 监听数据的到达事件
+    function read() {
+      reader?.read().then(({ done, value }) => {
+        if (done) {
+          // 请求结束，关闭连接或执行其他操作
+          return;
+        }
+
+        // 处理接收到的数据，例如将文本显示在页面上
+        const text = new TextDecoder().decode(value);
+        console.log(text);
+
+        // 继续读取下一块数据
+        read();
+      });
+    }
+
+    // 开始读取数据
+    read();
+  })
+  .catch((error) => {
+    console.error('请求错误:', error);
+  });
+}
+
+runningWater()
+
+const getMenuRunningWater = async () => {
+     const res = await menu.getRunningWater()
+
+     console.log(res)
+}
+
+getMenuRunningWater()
 
 const testData = ref('nihao')
 
