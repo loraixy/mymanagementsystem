@@ -12,7 +12,26 @@ const fs = require('fs');
 
 // 这里还有一个问题，这个地方并不是自动检索的，所以还是要手动切换一次，有些人的电脑上的npm没有npm.cmd
 // const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
-const npmPath = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
+let npmPath = null;
+
+// 第一个路径
+const npmPath1 = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
+// 第二个路径
+const npmPath2 = path.join(process.env.APPDATA, 'npm', 'npm.cmd');
+
+// 检查第一个路径是否存在
+if (fs.existsSync(npmPath1)) {
+  console.log('执行第一个路径上的操作');
+  npmPath = npmPath1;
+  // 执行第一个路径上的操作
+} else if (fs.existsSync(npmPath2)) {
+  console.log('执行第二个路径上的操作');
+  npmPath = npmPath2;
+  // 执行第二个路径上的操作
+} else {
+  console.log('两个路径都不存在，报错');
+  // 报错或执行其他操作
+}
 
 // spawn的配置选项
 let spawnOptions = {

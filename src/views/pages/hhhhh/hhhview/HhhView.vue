@@ -1,4 +1,4 @@
-<script setup lang="ts" name="hhhhh-echartsview">
+<script setup lang="ts" name="hhhhh-hhhview">
 import { ref, computed, onMounted } from 'vue'
 // 医院报表数据类型接口
 import type { IHospitalList } from '@/typings/hhhh'
