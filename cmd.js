@@ -191,7 +191,7 @@ function createServer(port, host) {
                 res.end('hello');
 
             });
-        } else if (url == '/crete-file') {
+        } else if (url == '/create-file') {
 
 
             const options = {
@@ -238,6 +238,19 @@ function createServer(port, host) {
             });
 
             request.on('error', (error) => {
+                res.end('error');
+                const folderPath = path.resolve('src', 'views', 'pages', `test`, `test`);
+                const filePathVue = path.resolve('src', 'views', 'pages', `test`, `test`, 'test.vue');
+                const filePathMeta = path.resolve('src', 'views', 'pages', `test`, `test`, 'page.ts');
+
+                const N = "\n";
+                fs.mkdirSync(folderPath, { recursive: true });
+
+                fs.writeFileSync(filePathVue, `<script lang="ts" setup name="test">${N}      console.log('test');${N}</script>${N}<template>${N}    <div>test</div>${N}</template>
+                `, { flag: 'w', encoding: 'utf-8' });
+
+                fs.writeFileSync(filePathMeta, `export default {${N}  name: 'test',${N}  savePage: true,${N}  title: 'test',${N}  premiss: '1',${N}  // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个${N}  isSave: false,${N}  menu: 'Navigation test'${N}}`, { flag: 'w', encoding: 'utf-8' })
+                
                 console.error(error); // 处理请求错误
             });
 
@@ -269,8 +282,8 @@ function createServer(port, host) {
         commandOutput(child);
 
         const folderPath = './src/views/pages';
-        fs.watch(folderPath, (event, filename) => {
-            console.log(event, filename, 1);
+        fs.watch(folderPath, (eventType, filename) => {
+            console.log(`文件 ${filename} 发生了 ${eventType} 事件`);
         })
     });
 
