@@ -51,7 +51,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/system/LoginView/LoginView.vue')
   },
 ]
-
+console.time('路由')
 const pages = import.meta.glob('../views/pages/**/page.ts', { eager: true, import: 'default' })
 
 // console.log('pages =>', pages)
@@ -65,14 +65,22 @@ function generatePathConfig(): Record<string, any> {
   const pathConfig = {} as {
     [key: string]: () => Promise<unknown>
   };
-  Object.keys(modules).forEach((filePath) => {
+  // Object.keys(modules).forEach((filePath) => {
 
-    const routePath = filePath
-      .split(filePath.split('/').pop() as string)[0]
+  //   const routePath = filePath
+  //     .split(filePath.split('/').pop() as string)[0]
+
+  //   pathConfig[routePath] = modules[filePath];
+  // });
+  for (const filePath in modules) {
+    const routePath = filePath.substring(0, filePath.lastIndexOf('/') + 1);
+
 
     pathConfig[routePath] = modules[filePath];
-  });
+  }
+  console.log('pathConfig =>', pathConfig)
   return pathConfig;
+
 }
 const pagesComps = generatePathConfig()
 
@@ -83,7 +91,7 @@ const testRoute: RouteRecordRaw[] = Object.entries(pages).map(([path, meta]) => 
   const pageJSPath = path
   path = path.replace('../views/pages', '').replace('/page.ts', '')
   const comPath = pageJSPath.replace('page.ts', '')
-  console.log('comPath =>', comPath)
+  // console.log('comPath =>', comPath)
   return {
     path,
     name: path.split('/').filter(Boolean).join('-') || 'index',
@@ -102,6 +110,8 @@ routes.forEach(item => {
 })
 
 console.log('pages =>', testRoute, pagesComps, routes)
+console.timeEnd('路由')
+
 
 const router = createRouter({
   linkActiveClass: 'route-link-active',

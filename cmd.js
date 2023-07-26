@@ -9,6 +9,7 @@ const path = require('path');
 const net = require('net');
 
 const fs = require('fs');
+const { resolve } = require('path');
 
 // 这里还有一个问题，这个地方并不是自动检索的，所以还是要手动切换一次，有些人的电脑上的npm没有npm.cmd
 // const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
@@ -211,36 +212,29 @@ function createServer(port, host) {
                     console.log(data); // 请求结果在这里处理
 
 
-                    // 生成文件夹和文件
-                    const folderPath = path.resolve('src', 'views', 'pages', 'test', 'test');
-                    const filePathVue = path.resolve('src', 'views', 'pages', 'test', 'test', 'test.vue');
-                    const filePathMeta = path.resolve('src', 'views', 'pages', 'test', 'test', 'page.ts');
+                    // test().then((data) => {
+                    //     console.log(data)
+                    //     res.writeHead(200, {
+                    //         'Content-Type': 'application/json' // 设置响应头
+                    //     });
+                    //     res.end(data);
+                    // })
+                    const folderPath = path.resolve('src', 'views', 'pages', `test`, `test`);
+                    const filePathVue = path.resolve('src', 'views', 'pages', `test`, `test`, 'test.vue');
+                    const filePathMeta = path.resolve('src', 'views', 'pages', `test`, `test`, 'page.ts');
 
                     const N = "\n";
                     fs.mkdirSync(folderPath, { recursive: true });
 
-                    fs.writeFileSync(filePathVue,
-                        `<script lang="ts" setup name="test">
-                            console.log('test');
-                        </script>
-                        <template>
-                            <div>test</div>
-                        </template>`.replace(/^[^\S\r\n]+|[^\S\r\n]+$/gm, ''), { flag: 'w', encoding: 'utf-8' });
+                    fs.writeFileSync(filePathVue, `<script lang="ts" setup name="test">${N}      console.log('test');${N}</script>${N}<template>${N}    <div>test</div>${N}</template>
+                    `, { flag: 'w', encoding: 'utf-8' });
 
-                    fs.writeFileSync(filePathMeta,
-                        `export default {
-                            name: 'test',
-                            savePage: true,
-                            title: 'test',premiss: '1',
-                            // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个
-                            isSave: false,
-                            menu: 'Navigation test'
-                        }`.replace(/^[^\S\r\n]+|[^\S\r\n]+$/gm, ''), { flag: 'w', encoding: 'utf-8' })
-
+                    fs.writeFileSync(filePathMeta, `export default {${N}  name: 'test',${N}  savePage: true,${N}  title: 'test',${N}  premiss: '1',${N}  // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个${N}  isSave: false,${N}  menu: 'Navigation test'${N}}`, { flag: 'w', encoding: 'utf-8' })
                     res.writeHead(200, {
                         'Content-Type': 'application/json' // 设置响应头
                     });
                     res.end(data);
+
                 });
             });
 
@@ -304,3 +298,26 @@ function init(port, host) {
 };
 
 init(config.port, config.host);
+
+// function test() {
+//     return new Promise((resolve) => {
+//         // 生成文件夹和文件
+//         for (let i = 0; i < 1000; i++) {
+//             const folderPath = path.resolve('src', 'views', 'pages', `test`, `test${i}`);
+//             const filePathVue = path.resolve('src', 'views', 'pages', `test${i}`, `test${i}`, 'test.vue');
+//             const filePathMeta = path.resolve('src', 'views', 'pages', `test${i}`, `test${i}`, 'page.ts');
+
+//             const N = "\n";
+//             fs.mkdirSync(folderPath, { recursive: true });
+
+//             fs.writeFileSync(filePathVue, `<script lang="ts" setup name="test${i}">${N}      console.log('test${i}');${N}</script>${N}<template>${N}    <div>test${i}</div>${N}</template>
+//             `, { flag: 'w', encoding: 'utf-8' });
+
+//             fs.writeFileSync(filePathMeta, `export default {${N}  name: 'test${i}',${N}  savePage: true,${N}  title: 'test${i}',${N}  premiss: '1',${N}  // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个${N}  isSave: false,${N}  menu: 'Navigation test${i}'${N}}`, { flag: 'w', encoding: 'utf-8' })
+//         }
+
+
+
+//         resolve('ok')
+//     })
+// }
