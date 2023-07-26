@@ -9,7 +9,6 @@ const path = require('path');
 const net = require('net');
 
 const fs = require('fs');
-const { resolve } = require('path');
 
 // 这里还有一个问题，这个地方并不是自动检索的，所以还是要手动切换一次，有些人的电脑上的npm没有npm.cmd
 // const npmPath = path.join(process.env.ProgramFiles, 'nodejs', 'npm.cmd');
@@ -268,6 +267,11 @@ function createServer(port, host) {
         process.env.PORT = port; // 添加这一行
         child = cp.spawn(npmPath, ['run', process.env.NODE_ENV === 'development' ? 'dev' : process.env.NODE_ENV], spawnOptions);
         commandOutput(child);
+
+        const folderPath = './src/views/pages';
+        fs.watch(folderPath, (event, filename) => {
+            console.log(event, filename, 1);
+        })
     });
 
 };
