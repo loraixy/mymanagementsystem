@@ -282,6 +282,7 @@ function createServer(port, host) {
         commandOutput(child);
 
         const folderPath = './src/views/pages';
+        // 需要封装一下才行
         fs.watch(folderPath, (eventType, filename) => {
             console.log(`文件 ${filename} 发生了 ${eventType} 事件`);
         })
