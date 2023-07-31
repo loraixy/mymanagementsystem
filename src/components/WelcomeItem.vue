@@ -11,6 +11,7 @@
     </div>
   </div>
 </template>
+<!-- 这个组件好像没用 -->
 
 <style scoped>
 .item {
