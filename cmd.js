@@ -358,8 +358,8 @@ function createServer(port, host) {
 }
 /**
  * 初始服务
- * @param {number} port
- * @param {string} host
+ * @param {number} port - 端口
+ * @param {string} host - 主机
  */
 function init(port, host) {
   isPortAvailable(port, host)
@@ -383,24 +383,3 @@ function init(port, host) {
 }
 
 init(config.port, config.host);
-
-// function test() {
-//     return new Promise((resolve) => {
-//         // 生成文件夹和文件
-//         for (let i = 0; i < 1000; i++) {
-//             const folderPath = path.resolve('src', 'views', 'pages', `test`, `test${i}`);
-//             const filePathVue = path.resolve('src', 'views', 'pages', `test${i}`, `test${i}`, 'test.vue');
-//             const filePathMeta = path.resolve('src', 'views', 'pages', `test${i}`, `test${i}`, 'page.ts');
-
-//             const N = "\n";
-//             fs.mkdirSync(folderPath, { recursive: true });
-
-//             fs.writeFileSync(filePathVue, `<script lang="ts" setup name="test${i}">${N}      console.log('test${i}');${N}</script>${N}<template>${N}    <div>test${i}</div>${N}</template>
-//             `, { flag: 'w', encoding: 'utf-8' });
-
-//             fs.writeFileSync(filePathMeta, `export default {${N}  name: 'test${i}',${N}  savePage: true,${N}  title: 'test${i}',${N}  premiss: '1',${N}  // 在工作中需要做许多关于提示保存的, 然后以前的项目经常没有,用户那边需要关闭时的一个保存提示.就加上了这个${N}  isSave: false,${N}  menu: 'Navigation test${i}'${N}}`, { flag: 'w', encoding: 'utf-8' })
-//         }
-
-//         resolve('ok')
-//     })
-// }
