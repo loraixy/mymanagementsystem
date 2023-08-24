@@ -1,8 +1,8 @@
 /* color palette from <https://github.com/vuejs/theme> */
 /* 基础颜色 */
 :root {
-  --lor-blue: #1c3b67;
-  --lor-sidebar-hover-bg: #4671ad;
+  --lor-blue: #fff;
+  --lor-sidebar-hover-bg: #5775a0;
   --lor-padding-px: 20px;
   --lor-active-bg-color: rgb(192, 190, 190);
   --lor-main-bg-color: #eef0f4;

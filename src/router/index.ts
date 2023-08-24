@@ -74,8 +74,6 @@ function generatePathConfig(): Record<string, any> {
   // });
   for (const filePath in modules) {
     const routePath = filePath.substring(0, filePath.lastIndexOf('/') + 1);
-
-
     pathConfig[routePath] = modules[filePath];
   }
   console.log('pathConfig =>', pathConfig)

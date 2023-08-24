@@ -13,7 +13,9 @@ const value = ref('');
         <ElInput v-model="value" placeholder="请输入验证码" />
         <ElButton type="primary" style=" margin-left: 10px; background-color: #0a71b4;">获取验证码</ElButton>
     </div>
-    <div><a href="#" style="text-decoration:underline; font-size: 13px;">忘记密码?</a></div>
+    <div>
+        <a href="#" style="text-decoration:underline; font-size: 13px;">忘记密码?</a>
+    </div>
 
     <ElButton type="primary" size="large" style=" background-color: #0a71b4;">登录</ElButton>
 </template>
