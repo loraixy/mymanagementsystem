@@ -73,6 +73,7 @@ class Http {
     params?: object
   ): Promise<AxiosResponse<ResultData<T>, any>> {
     return this.instance.post(url, params);
+    //                   ^?
   }
 }
 

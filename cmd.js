@@ -1,5 +1,6 @@
-// by lor 2023-07-18
-// 写的并不是很好，不过还是有点不错的
+// by lor 2023-08-26
+// 写的并不是很好， 第一次尝试nodejs的命令行
+// 不过还是有点不错的
 const http = require("http");
 
 const cp = require("child_process");
