@@ -20,8 +20,6 @@ const timeoutFunc = (id: string) => {
 
 /**
 * 生成一个异步函数，用于在数组上执行异步操作。
-*
-* @param {number} id - any。
 * @param {Function} asyncFunc - 在数组中的每个项上要调用的异步函数。
 * @returns {Function} - 执行异步操作的柯里化函数。
 */
@@ -60,10 +58,10 @@ const curryingAndClosureAndCallback = (asyncFunc: (...args: any[]) => Promise<an
 
 onMounted(() => {
     const func = curryingAndClosureAndCallback(timeoutFunc);
-    
+
     func(['1', '2', '3', "q"])
         .then(res => {
-            console.log(res)
+            console.log("是否全部完成 =>", res)
         })
         .catch(err => {
             console.log(err)
