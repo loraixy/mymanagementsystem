@@ -5,7 +5,7 @@ import { compileScript, parse } from '@vue/compiler-sfc'
 
 /**
  * Setup the name for the Vite plugin.
- *
+ * 用于设置模板名称，但不在vue文件中显示隐藏起来的
  * @return {Plugin} The Vite plugin object.
  */
 export default function setupName(): Plugin {

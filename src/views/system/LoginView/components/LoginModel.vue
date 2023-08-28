@@ -66,7 +66,7 @@ const clickLogin = async (loginForm: FormInstance | undefined): Promise<void> =>
             <ElInput v-model="ruleForm.password" placeholder="请输入密码"></ElInput>
         </ElFormItem>
         <ElFormItem>
-            <span>User Name</span>
+            <span>注册</span>
             <ElInput placeholder="请输入内容"></ElInput>
         </ElFormItem>
         <ElFormItem>

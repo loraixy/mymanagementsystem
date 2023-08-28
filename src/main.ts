@@ -13,6 +13,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 const app = createApp(App)
 
+
 // 为了告诉 TypeScript 这些新 property，我们需要使用[模块扩充]
 declare module '@vue/runtime-core' {
     interface ComponentCustomProperties {
