@@ -11,14 +11,6 @@ interface ResultData<T = any> extends Result {
     token?: string
 }
 
-/**
- * Http request
- * @author ldz
- * @param option
- * @example 
- * const http = new Http({baseURL: 'http://localhost'})
- * http.get('/test/', {id, str})
- */
 class Http {
     instance: AxiosInstance
     config: AxiosRequestConfig
@@ -35,7 +27,6 @@ class Http {
 
             return config
         }, function (error) {
-            console.log('拦截错误 👇')
             console.error(error)
             return Promise.reject(error)
         })
@@ -43,7 +34,6 @@ class Http {
         this.instance.interceptors.response.use(function (response) {
             return response
         }, function (error) {
-            console.log('响应错误 👇')
             console.error(error)
             httpErrorStatusHandle(error)
             return Promise.reject(error)

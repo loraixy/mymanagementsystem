@@ -48,7 +48,7 @@ const config = {
     host: '127.0.0.1',
     viteHost: ''
 };
-// spwan返回值
+// spawn返回值
 let child = null;
 
 /**
