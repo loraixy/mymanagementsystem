@@ -1,26 +1,24 @@
-import './assets/main.css'
-import './tailwind.css'
+import "./assets/main.css";
+import "./tailwind.css";
 
-import { createApp }  from 'vue'
+import { createApp } from "vue";
 
-import { createPinia } from 'pinia'
+import { createPinia } from "pinia";
 
+import App from "./App.vue";
+import router from "./router";
 
-import App from './App.vue'
-import router from './router'
+import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-
-const app = createApp(App)
-
+const app = createApp(App);
 
 // 为了告诉 TypeScript 这些新 property，我们需要使用[模块扩充]
-declare module '@vue/runtime-core' {
-    interface ComponentCustomProperties {
-        $parentHost: string
-        $parentPort: string
-        $title: string
-    }
+declare module "@vue/runtime-core" {
+  interface ComponentCustomProperties {
+    $parentHost: string;
+    $parentPort: string;
+    $title: string;
+  }
 }
 
 
@@ -29,13 +27,13 @@ app.config.globalProperties.$parentHost = import.meta.env.VITE_PARENT_HOST // �
 app.config.globalProperties.$title = '后台管理系统' // 系统名称
 localStorage.setItem('ms_title', app.config.globalProperties.$title)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-    app.component(key, component)
+  app.component(key, component);
 }
 
-app.use(createPinia())
-app.use(router)
+app.use(createPinia());
+app.use(router);
 
-app.mount('#app')
+app.mount("#app");
 
 // console.log(' 当前运行模式 ', import.meta.env.MODE)
 // console.log(' NODE_ENV: ', import.meta.env.VITE_NODE_ENV);
@@ -43,3 +41,6 @@ app.mount('#app')
 // console.log(import.meta.env.VITE_PARENT_HOST)
 // console.log('VITE_APP_TITLE', import.meta.env.VITE_APP_TITLE)
 
+
+
+// 看来 你们两个编辑器都差不都哦，哈哈哈哈还是可以的
